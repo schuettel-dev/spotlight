@@ -1,0 +1,34 @@
+en:
+  activerecord:
+    attributes:
+      calendar_date:
+        statuses:
+          collecting_requests: "Collecting requests"
+          requested: "Request sent to caretaker"
+          confirmed: "Light confirmed"
+          dismissed: "Light dismissed"
+  admin:
+    configurations_show_component:
+      title: "Configuration"
+  request_button_component:
+    sign_in_to_request_light: Sign in to request light
+    actions:
+      request_light: "Request light"
+      revoke_request: "Revoke your light request."
+    you_have_requested_light_for_today: "You've requested light for today."
+  requests_component:
+    calendar_date_light_requests_count_html:
+      zero: "There aren't any requests for today yet."
+      one: "There's <em>1 request</em> for today."
+      other: "There are <em>%{count} requests</em> for today."
+  sections:
+    date: "Date"
+    status: "Status"
+    requests: "Requests"
+    flow: "Flow"
+  shared:
+    errors:
+      access_denied_for_non_admins: "Only admins can access this."
+  time:
+    formats:
+      day_time_only: "%H:%M"

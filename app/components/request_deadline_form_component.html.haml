@@ -1,0 +1,5 @@
+.grid.grid-cols-12.w-full.py-8{ class: text_color_class }
+  .col-span-1.flex.items-center.justify-center= check_box_tag "weekday_#{request_deadline.weekday}", request_deadline.active?, request_deadline.active?
+  .col-span-8.flex.items-center.justify-start= t('date.day_names')[request_deadline.weekday]
+
+  .col-span-3.flex.items-center.justify-end= l(request_deadline.time, format: :day_time_only)

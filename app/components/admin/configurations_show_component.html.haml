@@ -1,0 +1,6 @@
+%h1= t('.title')
+
+%h2= t('.request_deadlines')
+
+.flex.flex-col.divide-y.divide-gray-800.text-gray-300.text-xl
+  = render RequestDeadlineFormComponent.with_collection(request_deadlines)

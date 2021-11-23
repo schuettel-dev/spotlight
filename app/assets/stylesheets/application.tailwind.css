@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-gray-900 text-gray-200 h-screen my-10;
+}
+
+a {
+  @apply text-sky-300;
+}
+
+.input {
+  @apply rounded py-1 px-2 w-full bg-gray-100 text-gray-900;
+}
+
+.button {
+  @apply bg-sky-400 text-black py-2 hover:bg-sky-300 cursor-pointer transition;
+}
+
+.label {
+  @apply text-gray-300 text-xs tracking-wide;
+}
+
+.field {
+  @apply mb-4;
+}
+
+.devise form {
+  @apply my-4;
+}
+
+.devise .actions {
+  @apply mt-10;
+}
+
+.devise--shared-links {
+  @apply flex flex-col gap-y-2;
+}
+
+.shy, .devise--shared-links a {
+  @apply text-gray-600 block text-center hover:text-sky-400 transition;
+}
+
+.devise--shared-links a {
+  @apply text-xs;
+}
+
+
+em {
+  @apply font-bold not-italic text-sky-200;
+}

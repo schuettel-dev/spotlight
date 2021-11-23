@@ -1,0 +1,81 @@
+DEFAULTS: &DEFAULTS
+  encrypted_password: "$2a$12$nyvXrSRtD41oay.jfQD/B.0f3OSEf6kRq5ennO9bxkCWF7efZGW5W" # -> "123456"
+  light_requests_count: 0
+
+bart:
+  <<: *DEFAULTS
+  nickname: "bart"
+  email: "bart@simp.sons"
+  light_requests_count: 4
+
+milhouse:
+  <<: *DEFAULTS
+  nickname: "milhouse"
+  email: "milhouse@simp.sons"
+  light_requests_count: 4
+
+lisa:
+  <<: *DEFAULTS
+  nickname: "Lisa"
+  email: "lisa@simp.sons"
+  light_requests_count: 3
+
+nelson:
+  <<: *DEFAULTS
+  nickname: "Nelson"
+  email: "nelson@simp.sons"
+  light_requests_count: 3
+
+ralph:
+  <<: *DEFAULTS
+  nickname: "Ralph"
+  email: "ralph@simp.sons"
+  light_requests_count: 3
+
+jimbo:
+  <<: *DEFAULTS
+  nickname: "Jimbo"
+  email: "jimbo@simp.sons"
+  light_requests_count: 2
+
+martin:
+  <<: *DEFAULTS
+  nickname: "Martin Prince"
+  email: "martin@simp.sons"
+  light_requests_count: 1
+
+todd:
+  <<: *DEFAULTS
+  nickname: "Todd"
+  email: "todd@simp.sons"
+  light_requests_count: 1
+
+kearney:
+  <<: *DEFAULTS
+  nickname: "kearney"
+  email: "kearney@simp.sons"
+  light_requests_count: 1
+
+marge:
+  <<: *DEFAULTS
+  nickname: "marge"
+  email: "marge@simp.sons"
+  role: "admin"
+
+ned:
+  <<: *DEFAULTS
+  nickname: "ned"
+  email: "ned@simp.sons"
+  role: "admin"
+
+willie:
+  <<: *DEFAULTS
+  nickname: "willie"
+  email: "willie@simp.sons"
+  role: "caretaker"
+
+frink:
+  <<: *DEFAULTS
+  nickname: "frink"
+  email: "frink@simp.sons"
+  role: "superadmin"

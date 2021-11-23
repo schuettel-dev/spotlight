@@ -1,0 +1,88 @@
+monday_bart:
+  calendar_date: monday
+  user: bart
+
+monday_milhouse:
+  calendar_date: monday
+  user: milhouse
+
+monday_lisa:
+  calendar_date: monday
+  user: lisa
+
+monday_nelson:
+  calendar_date: monday
+  user: nelson
+
+monday_ralph:
+  calendar_date: monday
+  user: ralph
+
+monday_jimbo:
+  calendar_date: monday
+  user: jimbo
+
+monday_martin:
+  calendar_date: monday
+  user: martin
+
+monday_todd:
+  calendar_date: monday
+  user: todd
+
+monday_kearney:
+  calendar_date: monday
+  user: kearney
+
+tuesday_bart:
+  calendar_date: tuesday
+  user: bart
+
+tuesday_milhouse:
+  calendar_date: tuesday
+  user: milhouse
+
+tuesday_lisa:
+  calendar_date: tuesday
+  user: lisa
+
+tuesday_nelson:
+  calendar_date: tuesday
+  user: nelson
+
+tuesday_ralph:
+  calendar_date: tuesday
+  user: ralph
+
+wednesday_bart:
+  calendar_date: wednesday
+  user: bart
+
+wednesday_milhouse:
+  calendar_date: wednesday
+  user: milhouse
+
+thursday_bart:
+  calendar_date: thursday
+  user: bart
+
+thursday_milhouse:
+  calendar_date: thursday
+  user: milhouse
+
+thursday_lisa:
+  calendar_date: thursday
+  user: lisa
+
+thursday_nelson:
+  calendar_date: thursday
+  user: nelson
+
+thursday_ralph:
+  calendar_date: thursday
+  user: ralph
+
+thursday_jimbo:
+  calendar_date: thursday
+  user: jimbo
+

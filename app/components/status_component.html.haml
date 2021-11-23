@@ -1,0 +1,7 @@
+.flex.flex-col.items-center.gap-y-4
+  - if calendar_date.collecting_requests?
+    .h-10.w-10.rounded-full.bg-sky-300.flex.items-center.justify-center
+      .text-gray-900.p-2
+        = render HeroiconComponent.new(:collection)
+    .text-xl.text-gray-400
+      = CalendarDate.human_enum_name(:status, calendar_date.status)

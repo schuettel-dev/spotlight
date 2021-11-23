@@ -1,0 +1,26 @@
+DEFAULTS: &DEFAULTS
+  light_requests_count: 0
+
+monday:
+  <<: *DEFAULTS
+  date: '2021-05-10'
+  status: 'confirmed'
+  light_requests_count: 9
+
+tuesday:
+  <<: *DEFAULTS
+  date: '2021-05-11'
+  status: 'confirmed'
+  light_requests_count: 5
+
+wednesday:
+  <<: *DEFAULTS
+  date: '2021-05-12'
+  status: 'requested'
+  light_requests_count: 2
+
+thursday:
+  <<: *DEFAULTS
+  date: '2021-05-13'
+  status: 'requested'
+  light_requests_count: 6

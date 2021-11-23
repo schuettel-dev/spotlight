@@ -1,0 +1,22 @@
+- if calendar_date.request_window_open?
+  - if user_signed_in?
+    - if user_light_request.new_record?
+      .mt-8.w-full
+        = form_with(model: user_light_request) do |f|
+          = f.button type: :submit, class: 'block w-full text-gray-200 bg-sky-600 py-4 text-center text-lg rounded-md hover:bg-sky-700 transition cursor-pointer flex items-center justify-center' do
+            .h-6.w-6.mr-2.-ml-4.text-yellow-100
+              = render HeroiconComponent.new(:'light-bulb')
+            = t('.action.request_light')
+
+    - else
+      .mt-4.text-sm.flex.flex-col.justify-center.text-center
+        .text-center.text-gray-500
+          = t('.you_have_requested_light_for_today')
+        - if calendar_date.request_window_open?
+          %div
+            = button_to t('.actions.revoke_request'), light_request_path(user_light_request), method: :delete, class: 'text-sky-700 hover:text-sky-500 transition'
+  - else
+    .mt-2
+      = link_to t('.sign_in_to_request_light'), new_user_session_path, class: 'text-sky-700 hover:text-sky-500 transition'
+- else
+  TODO

@@ -1,0 +1,14 @@
+- if calendar_date.light_requests.count.positive?
+  .flex.justify-center.mx-auto{ class: 'w-2/3' }
+    .inline-flex.flex-wrap.justify-center.items-center.my-4
+      - calendar_date.light_requests.count.times do
+        .flex.justify-center.items-center.p-3
+          %span.h-10.w-10.bg-green-300.rounded-full.flex.items-center.justify-center.text-gray-900.p-2
+            = render HeroiconComponent.new(:hand)
+
+
+.mt-4.flex.flex-col.justify-center.items-center.gap-y-1
+  .text-gray-400.text-base
+    = t('.calendar_date_light_requests_count_html', count: calendar_date.light_requests_count)
+
+  = render RequestButtonComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
