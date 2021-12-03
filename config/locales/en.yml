@@ -3,32 +3,61 @@ en:
     attributes:
       calendar_date:
         statuses:
-          collecting_requests: "Collecting requests"
-          requested: "Request sent to caretaker"
-          confirmed: "Light confirmed"
-          dismissed: "Light dismissed"
+          awaiting_light_requests: "Collecting requests"
+          requesting_light: "Requesting light"
+          light_requested: "Request sent to caretaker"
+          light_confirmed: "Light confirmed"
+          light_dismissed: "Light request has been dismissed"
+          not_requested_until_deadline: "Light was not requested until deadline"
+          not_active_today: "Not active today"
   admin:
     configurations_show_component:
       title: "Configuration"
+  title_component:
+    at_skatepark_schachen_aarau: at Skatepark Schachen, Aarau
+  date_component:
+    sunset_at_around: Sunset at around
   request_button_component:
     sign_in_to_request_light: Sign in to request light
     actions:
       request_light: "Request light"
+  request_flow_component:
+    collecting_requests: Collecting requests
+    confirmation_or_dismissal: Confirmation / dismissal
+    request_sent_to_caretaker_at: "Request sent to caretaker at"
+    sending_request_to_caretaker_at: "Sending request to caretaker at"
+  revoke_request_component:
+    actions:
       revoke_request: "Revoke your light request."
-    you_have_requested_light_for_today: "You've requested light for today."
-  requests_component:
-    calendar_date_light_requests_count_html:
+    you_have_requested_light_for_today: "You have requested light for today."
+  light_requests_component:
+    calendar_date_light_requests_count_present_tense_html:
       zero: "There aren't any requests for today yet."
       one: "There's <em>1 request</em> for today."
       other: "There are <em>%{count} requests</em> for today."
+    calendar_date_light_requests_count_past_tense_html:
+      zero: "There weren't any requests for today."
+      one: "There was <em>1 request</em> for today."
+      other: "There were <em>%{count} requests</em> for today."
   sections:
     date: "Date"
     status: "Status"
     requests: "Requests"
     flow: "Flow"
+    deadlines: "General deadlines"
   shared:
+    actions:
+      sign_out: Sign out
     errors:
       access_denied_for_non_admins: "Only admins can access this."
+  status_component:
+    no_light_today: No light today
+    light_confirmed: Light confirmed
+  today_component:
+    service_may_not_be_available_during_holiday_periods: "Service may not be avaialble during holiday periods"
+  deadlines_component:
+    not_available: Not available
   time:
     formats:
       day_time_only: "%H:%M"
+      day_name_only: "%A"

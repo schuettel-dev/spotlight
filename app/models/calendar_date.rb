@@ -1,11 +1,10 @@
 class CalendarDate < ApplicationRecord
+  include CalendarDateStatus
+
   validates :date, presence: true
   validates :date, uniqueness: true
 
-  has_many :light_requests
-
-  enum status: { collecting_requests: 'collecting_requests', requested: 'requested',
-                 confirmed: 'confirmed', dismissed: 'dismissed' }
+  has_many :light_requests, dependent: :destroy
 
   scope :with_light_requests, -> { left_outer_joins(:light_requests).includes(:light_requests) }
 
@@ -13,7 +12,23 @@ class CalendarDate < ApplicationRecord
     find_or_initialize_by(date: CalendarService.today_in_time_zone)
   end
 
-  def request_window_open?
-    true
+  def request_window
+    @request_window ||= RequestWindowService.new(self)
+  end
+
+  def caretaker_informed?
+    caretaker_informed_at.present?
+  end
+
+  def caretaker_informed!
+    update(caretaker_informed_at: Time.zone.now)
+  end
+
+  def light_confirmed_by_caretaker!
+    update(caretaker_confirmed_light_at: Time.zone.now, caretaker_dismissed_light_at: nil)
+  end
+
+  def light_dismissed_by_caretaker!
+    update(caretaker_confirmed_light_at: nil, caretaker_dismissed_light_at: Time.zone.now)
   end
 end

@@ -1,3 +1,5 @@
+# CURRENTLY UNUSED
+
 require 'test_helper'
 
 class LightRequestsCountsUpdaterTest < ActiveSupport::TestCase

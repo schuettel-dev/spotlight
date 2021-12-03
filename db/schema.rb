@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
 
   create_table "calendar_dates", force: :cascade do |t|
     t.date "date", null: false
-    t.string "status", default: "collecting_requests", null: false
     t.integer "light_requests_count", default: 0, null: false
+    t.datetime "caretaker_informed_at", precision: 6
+    t.datetime "caretaker_confirmed_light_at", precision: 6
+    t.datetime "caretaker_dismissed_light_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["date"], name: "index_calendar_dates_on_date", unique: true

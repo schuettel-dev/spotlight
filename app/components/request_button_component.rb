@@ -9,4 +9,8 @@ class RequestButtonComponent < ViewComponent::Base
   def user_signed_in?
     user_light_request.user.present?
   end
+
+  def render?
+    calendar_date.awaiting_light_requests?
+  end
 end

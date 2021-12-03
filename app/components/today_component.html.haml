@@ -1,19 +1,10 @@
-.mx-4.flex.flex-col.gap-y-16
-  = render SectionComponent.new(name: :date) do |c|
-    = c.body(classes: 'mt-2') do
-      .text-center.text-xl.text-gray-400
-        = display_date
+.mx-4.flex.flex-col.gap-y-20
+  = render DateSectionComponent.new(calendar_date: calendar_date)
 
-  = render SectionComponent.new(name: :status) do |c|
-    = c.body do
-      = render StatusComponent.new(calendar_date: calendar_date)
+  = render StatusSectionComponent.new(calendar_date: calendar_date)
 
+  = render RequestsSectionComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
 
-  = render SectionComponent.new(name: :requests) do |c|
-    = c.body do
-      = render RequestsComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
+  = render RequestFlowSectionComponent.new(calendar_date: calendar_date)
 
-
-  = render SectionComponent.new(name: :flow) do |c|
-    = c.body do
-      = render RequestFlowComponent.new(calendar_date: calendar_date)
+  = render DeadlinesSectionComponent.new

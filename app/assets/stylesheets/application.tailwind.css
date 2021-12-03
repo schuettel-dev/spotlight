@@ -11,6 +11,10 @@ a {
   @apply text-sky-300;
 }
 
+em {
+  @apply font-bold not-italic text-sky-200;
+}
+
 .input {
   @apply rounded py-1 px-2 w-full bg-gray-100 text-gray-900;
 }
@@ -40,14 +44,19 @@ a {
 }
 
 .shy, .devise--shared-links a {
-  @apply text-gray-600 block text-center hover:text-sky-400 transition;
+  @apply text-gray-600 text-center hover:text-sky-400 transition;
 }
 
 .devise--shared-links a {
   @apply text-xs;
 }
 
-
-em {
-  @apply font-bold not-italic text-sky-200;
+.section--title {
+  @apply block text-sky-600 text-sm uppercase text-center tracking-wide;
 }
+
+.section--body {
+  @apply bg-gray-800 mt-2 py-8 px-4 rounded-lg;
+}
+
+

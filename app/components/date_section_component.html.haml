@@ -1,0 +1,9 @@
+%section.date
+  .section--title
+    %h2= t('sections.date')
+  .section--body
+    .text-center.text-2xl.text-gray-200.flex.flex-col.gap-y-2
+      %time.calendar-date{ datetime: calendar_date.date.to_s }= display_date
+      .text-sm.text-gray-500
+        = t('.sunset_at_around')
+        %time.sunset-time{ datetime: sun_sets_at }= display_sun_sets_at

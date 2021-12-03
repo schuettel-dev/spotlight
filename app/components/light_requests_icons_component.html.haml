@@ -1,0 +1,6 @@
+.flex.justify-center
+  .inline-flex.flex-wrap.justify-center.items-center
+    - light_requests.count.times do
+      .flex.justify-center.items-center.p-3
+        %span.h-10.w-10.bg-indigo-600.rounded-full.flex.items-center.justify-center.text-indigo-200.p-2
+          = render HeroiconComponent.new(:hand)

@@ -2,8 +2,10 @@ class TodaysController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    render TodayComponent.new(calendar_date: find_calendar_date,
-                              user_light_request: find_user_light_request)
+    respond_to do |format|
+      format.html { render TodayComponent.new(calendar_date: find_calendar_date,
+                                              user_light_request: find_user_light_request) }
+    end
   end
 
   private

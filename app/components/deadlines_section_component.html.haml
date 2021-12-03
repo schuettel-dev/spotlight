@@ -1,0 +1,17 @@
+%section.deadlines
+  .section--title
+    %h2= t('sections.deadlines')
+  .section--body
+    .flex.flex-col.divide-y.divide-gray-700
+      - RequestDeadline.ordered.each do |request_deadline|
+        .flex.py-1{ class: request_deadline_classes(request_deadline) }
+          .flex-grow
+            = t('date.day_names').at(request_deadline.weekday)
+          .flex-shrink-0
+            - if request_deadline.active?
+              = l(request_deadline.time, format: :day_time_only)
+            - else
+              = t('.not_available')
+  .section--footer
+    .text-center.mt-2.text-gray-500.text-xs
+      = t('.service_may_not_be_available_during_holiday_periods')

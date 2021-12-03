@@ -1,3 +1,5 @@
+# CURRENTLY UNUSED
+
 class LightRequestsCountsUpdater
   def initialize(light_request = LightRequest.new)
     @light_request = light_request

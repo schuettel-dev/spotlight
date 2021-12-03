@@ -3,13 +3,15 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    %title Lights, Camera, Action!
+    %title Spotlight
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
     .max-w-prose.mx-auto
+      .header
+        = render TitleComponent.new
       .flashes
         .flash-notice= notice
         .flash-alert= alert
@@ -17,4 +19,8 @@
         = yield
       %footer.flex.justify-center.mt-32.mb-16
         - if user_signed_in?
-          = button_to "Sign out", destroy_user_session_path, class: 'shy', method: :delete
+          = button_to destroy_user_session_path, class: 'shy flex items-center', method: :delete do
+            .h-5.w-5.mr-2
+              = render HeroiconComponent.new(:logout)
+            .foo
+              = t('shared.actions.sign_out')

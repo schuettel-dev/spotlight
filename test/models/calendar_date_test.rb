@@ -11,8 +11,19 @@ class CalendarDateTest < ActiveSupport::TestCase
     end
   end
 
-  test 'enum :statuses' do
-    assert_equal 4, CalendarDate.statuses.count
-    assert CalendarDate.new.collecting_requests?
+  test '#caretaker_informed?' do
+    assert false, 'todo'
+  end
+
+  test '#caretaker_informed!' do
+    assert false, 'todo'
+  end
+
+  test '#light_confirmed_by_caretaker?' do
+    assert false, 'todo'
+  end
+
+  test '#light_dismissed_by_caretaker?' do
+    assert false, 'todo'
   end
 end

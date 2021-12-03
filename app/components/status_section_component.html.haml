@@ -1,0 +1,31 @@
+%section.status
+  .section--title
+    = t('sections.status')
+  .section--body
+    .flex.flex-col.items-center.gap-y-4
+      - if calendar_date.awaiting_light_requests?
+        .h-24.w-24.rounded-full.bg-sky-300.text-gray-900.flex.items-center.justify-center.p-6
+          = render HeroiconComponent.new(:collection)
+
+      - if calendar_date.requesting_light?
+        .h-24.w-24.rounded-full.bg-gray-500.text-gray-900.flex.items-center.justify-center.p-6
+          = render HeroiconComponent.new(:'status-online')
+
+      - if calendar_date.light_requested?
+        .h-24.w-24.rounded-full.bg-indigo-300.text-indigo-900.flex.items-center.justify-center.p-6
+          = render HeroiconComponent.new(:'phone-outgoing')
+
+      - if calendar_date.no_light_confirmed?
+        .h-24.w-24.rounded-full.bg-purple-700.text-purple-300.flex.items-center.justify-center.p-5
+          = render HeroiconComponent.new(:moon)
+        .text-gray-100.text-xl
+          = t('.no_light_today')
+
+      - if calendar_date.light_confirmed?
+        .h-24.w-24.rounded-full.bg-green-400.text-gray-900.flex.items-center.justify-center.p-6
+          = render HeroiconComponent.new(:'light-bulb')
+        .text-gray-100.text-xl
+          = t('.light_confirmed')
+
+      .text-gray-500.text-sm
+        = CalendarDate.human_enum_name(:status, calendar_date.status)

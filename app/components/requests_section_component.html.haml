@@ -1,0 +1,11 @@
+%section.requests
+  = turbo_stream_from('light_requests')
+  %turbo-frame{ id: :requests_section }
+    .section--title
+      = t('sections.requests')
+    .section--body
+      .flex.flex-col.gap-x-4
+        = render LightRequestsComponent.new(calendar_date: calendar_date)
+        = render RequestButtonComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
+    .section--footer
+      = render RevokeRequestComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
