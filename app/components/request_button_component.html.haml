@@ -1,6 +1,6 @@
 .mt-2.flex.justify-center
   - if user_signed_in?
-    - if user_light_request.new_record?
+    - if new_light_request?
       = form_with(model: user_light_request, class: 'w-full flex justify-center') do |f|
         = f.button type: :submit, class: 'inline-block w-full sm:w-1/2 text-gray-200 bg-sky-600 py-2 text-center text-base rounded-md hover:bg-sky-700 transition cursor-pointer flex items-center justify-center' do
           .h-6.w-6.mr-2.-ml-4

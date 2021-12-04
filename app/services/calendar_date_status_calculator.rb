@@ -36,7 +36,7 @@ class CalendarDateStatusCalculator
   end
 
   def requesting_light?
-    request_window_closed? && light_requests.any? && caretaker_not_informed?
+    request_window_deadline_past? && light_requests.any? && caretaker_not_informed?
   end
 
   def light_requested?
@@ -53,6 +53,10 @@ class CalendarDateStatusCalculator
 
   def request_window_open?
     active? && @calendar_date.request_window.open?
+  end
+
+  def request_window_deadline_past?
+    active? && @calendar_date.request_window.deadline.past?
   end
 
   def request_window_closed?

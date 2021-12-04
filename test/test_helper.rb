@@ -34,3 +34,9 @@ class ActionDispatch::IntegrationTest
     sign_in(fixture)
   end
 end
+
+class ViewComponent::TestCase
+  def new_component(**args)
+    self.class.to_s.gsub(/Test$/, '').constantize.new(**args)
+  end
+end
