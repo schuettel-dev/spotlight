@@ -6,7 +6,7 @@ class DateSectionComponent < ViewComponent::Base
   end
 
   def display_date
-    calendar_date.date.to_s(:long)
+    calendar_date.date.to_formatted_s(:long)
   end
 
   def sun_sets_at

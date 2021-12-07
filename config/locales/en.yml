@@ -15,7 +15,7 @@ en:
       title: "Configuration"
   title_component:
     at_skatepark_schachen_aarau: at Skatepark Schachen, Aarau
-  date_component:
+  date_section_component:
     sunset_at_around: Sunset at around
   request_button_component:
     sign_in_to_request_light: Sign in to request light
