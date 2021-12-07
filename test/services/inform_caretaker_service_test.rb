@@ -27,6 +27,7 @@ class InformCaretakerServiceTest < ActiveSupport::TestCase
   test '#call!, deadline due, caretaker already informed' do
     travel_to '2001-01-04 16:35:00 +01:00' do
       thursday = calendar_dates(:thursday)
+      thursday.update!(caretaker_informed_at: Time.zone.now)
 
       assert_no_changes -> { thursday.status } do
         InformCaretakerService.new(thursday).call!
