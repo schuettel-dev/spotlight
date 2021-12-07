@@ -30,6 +30,11 @@ en:
     actions:
       revoke_request: "Revoke your light request."
     you_have_requested_light_for_today: "You have requested light for today."
+  light_requests:
+    create:
+      error: "Light could not be requested."
+    destroy:
+      error: "Light request could not be revoked."
   light_requests_component:
     calendar_date_light_requests_count_present_tense_html:
       zero: "There aren't any requests for today yet."

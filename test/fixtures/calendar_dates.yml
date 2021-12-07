@@ -4,7 +4,6 @@ DEFAULTS: &DEFAULTS
 monday:
   <<: *DEFAULTS
   date: '2001-01-01'
-  # status: 'light_confirmed'
   caretaker_informed_at: '2001-01-01 15:00:00'
   caretaker_confirmed_light_at: '2001-01-01 15:15:00'
   caretaker_dismissed_light_at:
@@ -13,7 +12,6 @@ monday:
 tuesday:
   <<: *DEFAULTS
   date: '2001-01-02'
-  # status: 'light_confirmed'
   caretaker_informed_at: '2001-01-02 16:00:00'
   caretaker_confirmed_light_at: '2001-01-02 16:15:00'
   caretaker_dismissed_light_at:
@@ -22,7 +20,6 @@ tuesday:
 wednesday:
   <<: *DEFAULTS
   date: '2001-01-03'
-  # status: 'light_requested'
   caretaker_informed_at: '2001-01-03 16:00:00'
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
@@ -31,8 +28,7 @@ wednesday:
 thursday:
   <<: *DEFAULTS
   date: '2001-01-04'
-  # status: 'light_requested'
-  caretaker_informed_at: '2001-01-04 16:30:00'
+  caretaker_informed_at:
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
   light_requests_count: 6
