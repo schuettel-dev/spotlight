@@ -21,7 +21,7 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
       assert_equal :awaiting_light_requests, status_for(calendar_date)
     end
 
-    travel_to zurich_time(2001, 1, 4, 16, 30, 0) do
+    travel_to zurich_time(2001, 1, 4, 16, 35, 0) do
       calendar_date.caretaker_informed_at = nil
       assert_equal :requesting_light, status_for(calendar_date)
       calendar_date.caretaker_informed_at = Time.zone.now
