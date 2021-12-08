@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
 
   create_table "calendar_dates", force: :cascade do |t|
     t.date "date", null: false
-    t.integer "light_requests_count", default: 0, null: false
     t.datetime "caretaker_informed_at", precision: 6
     t.datetime "caretaker_confirmed_light_at", precision: 6
     t.datetime "caretaker_dismissed_light_at", precision: 6
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
     t.string "encrypted_password", null: false
     t.string "role", default: "user", null: false
     t.string "status", default: "unverified", null: false
-    t.integer "light_requests_count", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: 6
     t.datetime "remember_created_at", precision: 6

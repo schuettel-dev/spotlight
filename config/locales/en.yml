@@ -10,6 +10,12 @@ en:
           light_dismissed: "Light requests have been dismissed"
           not_requested_until_deadline: "Light was not requested until deadline"
           not_active_today: "Not active today"
+    errors:
+      models:
+        light_request:
+          attributes:
+            base:
+              request_window_closed: "Request window is closed."
   admin:
     configurations_show_component:
       title: "Configuration"

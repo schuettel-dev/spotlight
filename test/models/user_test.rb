@@ -8,8 +8,8 @@ class UserTest < ActiveSupport::TestCase
     travel_to calendar_date.date do
       assert_difference(
         [
-          -> { calendar_date.light_requests_count },
-          -> { user.light_requests_count },
+          -> { calendar_date.light_requests.count },
+          -> { user.light_requests.count },
           -> { LightRequest.count }
         ], +1
       ) do
@@ -31,8 +31,8 @@ class UserTest < ActiveSupport::TestCase
         [
           -> { CalendarDate.count },
           -> { LightRequest.count },
-          -> { calendar_date.light_requests_count },
-          -> { user.light_requests_count }
+          -> { calendar_date.light_requests.count },
+          -> { user.light_requests.count }
         ]
       ) do
         assert user.request_light_for_today
@@ -51,7 +51,7 @@ class UserTest < ActiveSupport::TestCase
         [
           -> { CalendarDate.count },
           -> { LightRequest.count },
-          -> { user.light_requests_count }
+          -> { user.light_requests.count }
         ], +1
       ) do
         assert user.request_light_for_today
@@ -59,7 +59,7 @@ class UserTest < ActiveSupport::TestCase
       end
 
       calendar_date = CalendarDate.find_by!(date: date)
-      assert_equal 1, calendar_date.light_requests_count
+      assert_equal 1, calendar_date.light_requests.count
     end
   end
 

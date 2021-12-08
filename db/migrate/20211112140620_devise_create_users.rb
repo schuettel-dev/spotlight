@@ -9,7 +9,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :encrypted_password, null: false
       t.string :role, null: false, default: 'user'
       t.string :status, null: false, default: 'unverified'
-      t.integer :light_requests_count, null: false, default: 0
 
       ## Recoverable
       t.string :reset_password_token, index: { unique: true }

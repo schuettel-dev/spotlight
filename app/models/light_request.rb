@@ -20,6 +20,6 @@ class LightRequest < ApplicationRecord
   def request_window_open?
     return if calendar_date.request_window.open?
 
-    errors.add(:request_window_closed) && throw(:abort)
+    errors.add(:base, :request_window_closed) && throw(:abort)
   end
 end
