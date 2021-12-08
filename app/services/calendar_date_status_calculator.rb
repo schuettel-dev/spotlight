@@ -56,7 +56,7 @@ class CalendarDateStatusCalculator
   end
 
   def request_window_deadline_past?
-    active? && @calendar_date.request_window.deadline.past?
+    active? && @calendar_date.request_window.time_window_end.past?
   end
 
   def request_window_closed?

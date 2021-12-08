@@ -11,25 +11,29 @@ class RequestWindowService
     request_deadline.active?
   end
 
-  def deadline
-    @deadline ||= calculate_deadline
-  end
-
   def in_time_window?(time)
     time_window.cover?(time)
   end
 
   def time_window
-    (beginning_of_day..deadline)
+    @time_window ||= (calculate_time_window_start..calculate_time_window_end)
+  end
+
+  def time_window_start
+    time_window.first
+  end
+
+  def time_window_end
+    time_window.last
   end
 
   private
 
-  def beginning_of_day
+  def calculate_time_window_start
     @calendar_date.date.asctime.in_time_zone('Europe/Zurich').at_beginning_of_day
   end
 
-  def calculate_deadline
+  def calculate_time_window_end
     @calendar_date.date.to_datetime
                        .change(request_deadline_time_params)
                        .asctime
