@@ -4,7 +4,7 @@
   .section--body
     .flow-root.mx-2
       %ul{role: "list"}
-        %li
+        %li.collecting-requests
           .relative.pb-8
             %span.absolute.top-4.left-4.-ml-px.h-full.bg-gray-400{"aria-hidden" => "true", class: "w-0.5"}
             .relative.flex.space-x-4.items-center
@@ -15,7 +15,7 @@
                 %p.text-sm.text-gray-300
                   = t('.collecting_requests')
 
-        %li
+        %li.contacting-caretaker
           .relative.pb-8
             %span.absolute.top-4.left-4.-ml-px.h-full.bg-gray-400{"aria-hidden" => "true", class: "w-0.5"}
             .relative.flex.space-x-4.items-center
@@ -27,8 +27,9 @@
                   %div
                     %p.text-sm.text-gray-500
                       = t('.sending_request_to_caretaker_at')
-                      %time.request-deadline{ datetime: calendar_date.request_window.deadline }
-                        = l(calendar_date.request_window.deadline, format: :day_time_only)
+                      %time.request-time-window-end{ datetime: calendar_date.request_window.time_window_end }
+                        = l(calendar_date.request_window.time_window_end, format: :day_time_only)
+
               - if calendar_date.light_requested? || calendar_date.light_confirmed? || calendar_date.light_dismissed?
                 %div
                   %span.h-8.w-8.rounded-full.bg-indigo-300.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
@@ -38,9 +39,9 @@
                     %p.text-sm.text-gray-300
                       = t('.request_sent_to_caretaker_at')
                       %time.caretaker-informed-at{ datetime: calendar_date.caretaker_informed_at }
-                        = l(calendar_date.caretaker_informed_at, format: :day_time_only)
+                        = l(calendar_date.caretaker_informed_at.in_time_zone('Europe/Zurich'), format: :day_time_only)
 
-        %li
+        %li.decision
           .relative
             .relative.flex.space-x-4.items-center
               - if calendar_date.light_confirmed?
@@ -50,6 +51,7 @@
                 .min-w-0.flex-1.flex.justify-between.space-x-4
                   %p.text-sm.text-gray-100
                     = CalendarDate.human_enum_name(:status, calendar_date.status)
+
               - elsif calendar_date.light_dismissed?
                 %div
                   %span.h-8.w-8.rounded-full.bg-purple-700.text-purple-300.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
@@ -57,10 +59,14 @@
                 .min-w-0.flex-1.flex.justify-between.space-x-4
                   %p.text-sm.text-text-100
                     = CalendarDate.human_enum_name(:status, calendar_date.status)
+
               - else
                 %div
                   %span.h-8.w-8.rounded-full.bg-gray-600.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
                     = render HeroiconComponent.new(:'dots-horizontal')
                 .min-w-0.flex-1.flex.justify-between.space-x-4
                   %p.text-sm.text-gray-500
-                    = t('.confirmation_or_dismissal')
+                    - if calendar_date.awaiting_light_requests? || calendar_date.requesting_light?
+                      = t('.confirmation_or_dismissal')
+                    - else
+                      = t('.awaiting_confirmation_or_dismissal')

@@ -15,7 +15,7 @@ class InformCaretakerService
   end
 
   def due?
-    todays_weekday? && calendar_date_active? && deadline_past? && caretaker_not_informed?
+    todays_weekday? && calendar_date_active? && request_time_window_end_past? && caretaker_not_informed?
   end
 
   def todays_weekday?
@@ -26,8 +26,8 @@ class InformCaretakerService
     @calendar_date.request_window.active?
   end
 
-  def deadline_past?
-    @calendar_date.request_window.deadline.past?
+  def request_time_window_end_past?
+    @calendar_date.request_window.time_window_end.past?
   end
 
   def caretaker_not_informed?

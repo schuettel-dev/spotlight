@@ -9,25 +9,65 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
       render_inline new_component(calendar_date: calendar_date)
 
       assert_collecting_requests text: 'Collecting requests'
-      assert_contacting_caretaker text: 'Sending'
+      assert_contacting_caretaker text: 'Sending request to caretaker at 16:30'
       assert_decision text: 'Confirmation / dismissal'
     end
   end
 
   test 'render, requesting light' do
-    assert false
+    travel_to '2001-01-04 16:35:00 +01:00' do
+      calendar_date = calendar_dates(:thursday)
+      assert_not calendar_date.caretaker_informed?
+      assert calendar_date.request_window.time_window_end.past?
+
+      render_inline new_component(calendar_date: calendar_date)
+
+      assert_collecting_requests text: 'Collecting requests'
+      assert_contacting_caretaker text: 'Sending request to caretaker at 16:30'
+      assert_decision text: 'Confirmation / dismissal'
+    end
   end
 
   test 'render, light requested' do
-    assert false, 'todo'
+    travel_to '2001-01-04 16:35:00 +01:00' do
+      calendar_date = calendar_dates(:thursday)
+      calendar_date.caretaker_informed!
+      assert calendar_date.request_window.time_window_end.past?
+
+      render_inline new_component(calendar_date: calendar_date)
+
+      assert_collecting_requests text: 'Collecting requests'
+      assert_contacting_caretaker text: 'Request sent to caretaker at 16:35'
+      assert_decision text: 'Awaiting confirmation / dismissal'
+    end
   end
 
   test 'render, light confirmed' do
-    assert false, 'todo'
+    travel_to '2001-01-04 16:35:00 +01:00' do
+      calendar_date = calendar_dates(:thursday)
+      calendar_date.caretaker_informed!
+      calendar_date.light_confirmed_by_caretaker!
+
+      render_inline new_component(calendar_date: calendar_date)
+
+      assert_collecting_requests text: 'Collecting requests'
+      assert_contacting_caretaker text: 'Request sent to caretaker at 16:35'
+      assert_decision text: 'Light confirmed'
+    end
   end
 
   test 'render, light dismissed' do
-    assert false, 'todo'
+    travel_to '2001-01-04 16:35:00 +01:00' do
+      calendar_date = calendar_dates(:thursday)
+      calendar_date.caretaker_informed!
+      calendar_date.light_dismissed_by_caretaker!
+
+      render_inline new_component(calendar_date: calendar_date)
+
+      assert_collecting_requests text: 'Collecting requests'
+      assert_contacting_caretaker text: 'Request sent to caretaker at 16:35'
+      assert_decision text: 'Light requests have been dismissed'
+    end
   end
 
   test 'not render, not active' do
@@ -52,20 +92,20 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
   private
 
   def assert_collecting_requests(text:)
-    find_list_item_for('.collecting-requests').tap do |element|
-      assert false
+    assert_selector('li.collecting-requests') do |element|
+      element.assert_text text, normalize_ws: true
     end
   end
 
   def assert_contacting_caretaker(text:)
-    find_list_item_for('.contacting-caretaker').tap do |element|
-      assert false
+    assert_selector('li.contacting-caretaker') do |element|
+      element.assert_text text, normalize_ws: true
     end
   end
 
   def assert_decision(text:)
-    find_list_item_for('.decision').tap do |element|
-      assert false
+    assert_selector('li.decision') do |element|
+      element.assert_text text, normalize_ws: true
     end
   end
 end

@@ -7,7 +7,7 @@ en:
           requesting_light: "Requesting light"
           light_requested: "Request sent to caretaker"
           light_confirmed: "Light confirmed"
-          light_dismissed: "Light request has been dismissed"
+          light_dismissed: "Light requests have been dismissed"
           not_requested_until_deadline: "Light was not requested until deadline"
           not_active_today: "Not active today"
   admin:
@@ -21,9 +21,10 @@ en:
     sign_in_to_request_light: Sign in to request light
     actions:
       request_light: "Request light"
-  request_flow_component:
+  request_flow_section_component:
     collecting_requests: Collecting requests
     confirmation_or_dismissal: Confirmation / dismissal
+    awaiting_confirmation_or_dismissal: Awaiting confirmation / dismissal
     request_sent_to_caretaker_at: "Request sent to caretaker at"
     sending_request_to_caretaker_at: "Sending request to caretaker at"
   revoke_request_component:
