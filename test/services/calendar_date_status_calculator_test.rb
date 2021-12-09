@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
+  test 'date in future' do
+    travel_to zurich_time(2001, 1, 1, 10, 0, 0) do
+      assert_equal :date_in_future, status_for(CalendarDate.new(date: '2001-01-02'))
+    end
+  end
+
   test 'inactive days' do
     # saturday
     travel_to zurich_time(2001, 1, 6, 10, 0, 0) do
