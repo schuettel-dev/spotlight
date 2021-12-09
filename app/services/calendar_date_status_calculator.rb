@@ -25,7 +25,7 @@ class CalendarDateStatusCalculator
   end
 
   def date_in_future?
-    date.future?
+    date.to_time.asctime.in_time_zone('Europe/Zurich').future?
   end
 
   def not_active_today?
