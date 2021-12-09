@@ -46,7 +46,7 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
     travel_to '2001-01-04 16:35:00 +01:00' do
       calendar_date = calendar_dates(:thursday)
       calendar_date.caretaker_informed!
-      calendar_date.light_confirmed_by_caretaker!
+      calendar_date.caretaker_confirmed_light!
 
       render_inline new_component(calendar_date: calendar_date)
 
@@ -60,7 +60,7 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
     travel_to '2001-01-04 16:35:00 +01:00' do
       calendar_date = calendar_dates(:thursday)
       calendar_date.caretaker_informed!
-      calendar_date.light_dismissed_by_caretaker!
+      calendar_date.caretaker_dismissed_light!
 
       render_inline new_component(calendar_date: calendar_date)
 
