@@ -15,6 +15,10 @@ module CalendarDateStatus
   end
 
   # raw status
+  def date_in_future?
+    status == :date_in_future
+  end
+
   def awaiting_light_requests?
     status == :awaiting_light_requests
   end

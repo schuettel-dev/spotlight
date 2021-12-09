@@ -3,6 +3,7 @@ en:
     attributes:
       calendar_date:
         statuses:
+          date_in_future: "Date in future"
           awaiting_light_requests: "Collecting requests"
           requesting_light: "Requesting light"
           light_requested: "Request sent to caretaker"
@@ -62,7 +63,7 @@ en:
       sign_out: Sign out
     errors:
       access_denied_for_non_admins: "Only admins can access this."
-  status_component:
+  status_section_component:
     no_light_today: No light today
     light_confirmed: Light confirmed
   today_component:

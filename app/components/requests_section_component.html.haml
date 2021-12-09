@@ -2,7 +2,7 @@
   = turbo_stream_from('light_requests')
   %turbo-frame{ id: :requests_section }
     .section--title
-      = t('sections.requests')
+      %h2= t('sections.requests')
     .section--body
       .flex.flex-col.gap-x-4
         = render LightRequestsComponent.new(calendar_date: calendar_date)
