@@ -1,4 +1,7 @@
 class CalendarDateStatusCalculator
+
+  delegate :caretaker_informed?, :caretaker_confirmed_light?, :caretaker_dismissed_light?, to: :@calendar_date
+
   def initialize(calendar_date)
     @calendar_date = calendar_date
   end
@@ -63,17 +66,17 @@ class CalendarDateStatusCalculator
     !request_window_open?
   end
 
-  def caretaker_informed?
-    @calendar_date.caretaker_informed_at.present?
-  end
+  # def caretaker_informed?
+  #   @calendar_date.caretaker_informed_at.present?
+  # end
 
-  def caretaker_confirmed_light?
-    @calendar_date.caretaker_confirmed_light_at.present?
-  end
+  # def caretaker_confirmed_light?
+  #   @calendar_date.caretaker_confirmed_light_at.present?
+  # end
 
-  def caretaker_dismissed_light?
-    @calendar_date.caretaker_dismissed_light_at.present?
-  end
+  # def caretaker_dismissed_light?
+  #   @calendar_date.caretaker_dismissed_light_at.present?
+  # end
 
   def caretaker_not_informed?
     !caretaker_informed?

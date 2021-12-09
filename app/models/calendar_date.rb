@@ -24,11 +24,19 @@ class CalendarDate < ApplicationRecord
     update(caretaker_informed_at: Time.zone.now)
   end
 
-  def light_confirmed_by_caretaker!
+  def caretaker_confirmed_light?
+    caretaker_confirmed_light_at.present?
+  end
+
+  def caretaker_confirmed_light!
     update(caretaker_confirmed_light_at: Time.zone.now, caretaker_dismissed_light_at: nil)
   end
 
-  def light_dismissed_by_caretaker!
+  def caretaker_dismissed_light?
+    caretaker_dismissed_light_at.present?
+  end
+
+  def caretaker_dismissed_light!
     update(caretaker_confirmed_light_at: nil, caretaker_dismissed_light_at: Time.zone.now)
   end
 end

@@ -29,7 +29,7 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
     end
 
     travel_to zurich_time(2001, 1, 4, 16, 35, 0) do
-      calendar_date.light_confirmed_by_caretaker!
+      calendar_date.caretaker_confirmed_light!
       assert_equal :light_confirmed, status_for(calendar_date)
     end
   end
@@ -38,7 +38,7 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
     calendar_date = calendar_dates(:thursday)
 
     travel_to zurich_time(2001, 1, 4, 16, 35, 0) do
-      calendar_date.light_dismissed_by_caretaker!
+      calendar_date.caretaker_dismissed_light!
       assert_equal :light_dismissed, status_for(calendar_date)
     end
   end
