@@ -67,7 +67,7 @@ en:
     light_confirmed: Light confirmed
   today_component:
     service_may_not_be_available_during_holiday_periods: "Service may not be avaialble during holiday periods"
-  deadlines_component:
+  deadlines_section_component:
     not_available: Not available
   time:
     formats:

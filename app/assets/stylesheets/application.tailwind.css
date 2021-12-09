@@ -59,4 +59,6 @@ em {
   @apply bg-gray-800 mt-2 py-8 px-4 rounded-lg;
 }
 
-
+.request-deadlines--weekday-inactive { @apply text-gray-500; }
+.request-deadlines--weekday-current { @apply text-sky-300; }
+.request-deadlines--weekday-active { @apply text-gray-300; }

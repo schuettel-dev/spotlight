@@ -4,7 +4,7 @@
   .section--body
     .flex.flex-col.divide-y.divide-gray-700
       - RequestDeadline.ordered.each do |request_deadline|
-        .flex.py-1{ class: request_deadline_classes(request_deadline) }
+        .flex.py-1.request-deadline-row{ class: request_deadline_classes(request_deadline) }
           .flex-grow
             = t('date.day_names').at(request_deadline.weekday)
           .flex-shrink-0
