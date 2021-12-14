@@ -8,7 +8,6 @@ class SchachenSunsetsTest < ActiveSupport::TestCase
 
   private
 
-
   def sunset_for(date)
     SchachenSunsets.on(Date.parse(date))
   end

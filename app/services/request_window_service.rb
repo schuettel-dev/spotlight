@@ -7,9 +7,7 @@ class RequestWindowService
     active? && in_time_window?(Time.zone.now)
   end
 
-  def active?
-    request_deadline.active?
-  end
+  delegate :active?, to: :request_deadline
 
   def in_time_window?(time)
     time_window.cover?(time)
@@ -35,9 +33,9 @@ class RequestWindowService
 
   def calculate_time_window_end
     @calendar_date.date.to_datetime
-                       .change(request_deadline_time_params)
-                       .asctime
-                       .in_time_zone('Europe/Zurich')
+                  .change(request_deadline_time_params)
+                  .asctime
+                  .in_time_zone('Europe/Zurich')
   end
 
   def request_deadline

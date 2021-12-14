@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test '#request_light_for_today, new request, existing calendar date' do

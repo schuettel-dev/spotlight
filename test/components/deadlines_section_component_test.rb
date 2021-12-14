@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# rubocop:disable Layout/SpaceBeforeComma
 class DeadlinesSectionComponentTest < ViewComponent::TestCase
   test 'render general' do
     render_inline(new_component)
@@ -131,3 +132,4 @@ class DeadlinesSectionComponentTest < ViewComponent::TestCase
         .find { |element| element.text.include?(weekday) }
   end
 end
+# rubocop:enable Layout/SpaceBeforeComma

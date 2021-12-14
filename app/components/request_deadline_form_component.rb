@@ -32,7 +32,7 @@ class RequestDeadlineFormComponent < ViewComponent::Base
     time_steps = [current_time]
 
     while current_time < end_time
-      current_time = current_time + 15.minutes
+      current_time += 15.minutes
       time_steps << current_time
     end
 

@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# rubocop:disable Layout/ExtraSpacing
 class RequestWindowServiceTest < ActiveSupport::TestCase
   test '#open?, no daylight savings' do
     # monday UTC+1
@@ -91,3 +92,4 @@ class RequestWindowServiceTest < ActiveSupport::TestCase
     end
   end
 end
+# rubocop:enable Layout/ExtraSpacing

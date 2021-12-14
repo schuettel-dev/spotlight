@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   encrypts :email, deterministic: true
 
-  has_many :light_requests
+  has_many :light_requests, dependent: :destroy
 
   validates :nickname, presence: true
   validates :nickname, uniqueness: true

@@ -3,8 +3,10 @@ class TodaysController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html { render TodayComponent.new(calendar_date: find_calendar_date,
-                                              user_light_request: find_user_light_request) }
+      format.html do
+        render TodayComponent.new(calendar_date: find_calendar_date,
+                                  user_light_request: find_user_light_request)
+      end
     end
   end
 

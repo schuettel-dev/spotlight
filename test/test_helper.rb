@@ -1,6 +1,6 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -29,10 +29,6 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-
-  def sign_in_as(fixture, password: '123456')
-    sign_in(fixture)
-  end
 end
 
 class ViewComponent::TestCase

@@ -30,7 +30,7 @@ class LightRequestsControllerTest < ActionDispatch::IntegrationTest
   test '#create, logged in, request window open' do
     travel_to '2001-01-04 10:00:00 +01:00' do
       user = users(:martin)
-      sign_in_as user
+      sign_in user
 
       assert_difference -> { user.light_requests.count }, +1 do
         post light_requests_path, params: {}
@@ -44,7 +44,7 @@ class LightRequestsControllerTest < ActionDispatch::IntegrationTest
   test '#create, logged in, request window closed' do
     travel_to '2001-01-04 16:35:00 +01:00' do
       user = users(:martin)
-      sign_in_as user
+      sign_in user
 
       assert_no_difference -> { LightRequest.count } do
         post light_requests_path, params: {}
@@ -61,7 +61,7 @@ class LightRequestsControllerTest < ActionDispatch::IntegrationTest
     travel_to '2001-01-04 10:00:00 +01:00' do
       user = users(:bart)
       light_request = light_requests(:thursday_bart)
-      sign_in_as user
+      sign_in user
 
       assert_difference -> { user.light_requests.count }, -1 do
         delete light_request_path(light_request), params: {}
@@ -76,7 +76,7 @@ class LightRequestsControllerTest < ActionDispatch::IntegrationTest
     travel_to '2001-01-04 16:35:00 +01:00' do
       user = users(:bart)
       light_request = light_requests(:thursday_bart)
-      sign_in_as user
+      sign_in user
 
       assert_no_difference -> { user.light_requests.count } do
         delete light_request_path(light_request), params: {}

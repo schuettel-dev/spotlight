@@ -8,13 +8,13 @@ class Admin::ConfigurationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'user does not get #edit' do
-    sign_in_as(users(:todd))
+    sign_in(users(:todd))
     get edit_admin_configuration_path
     assert_access_denied 'Only admins can access this.'
   end
 
   test 'admin get #edit' do
-    sign_in_as(users(:marge))
+    sign_in(users(:marge))
     get edit_admin_configuration_path
     assert_response :success
   end
@@ -26,7 +26,7 @@ class Admin::ConfigurationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'user does not patch #update' do
-    sign_in_as(users(:todd))
+    sign_in(users(:todd))
     patch admin_configuration_path, params: {}
     assert_access_denied 'Only admins can access this.'
   end

@@ -11,11 +11,9 @@ class LightRequest < ApplicationRecord
     broadcast_replace_to(
       'light_requests',
       target: 'light_requests',
-      html: ApplicationController.render(LightRequestsComponent.new(calendar_date: self.calendar_date), layout: false)
+      html: ApplicationController.render(LightRequestsComponent.new(calendar_date: calendar_date), layout: false)
     )
   end
-
-  private
 
   def request_window_open?
     return if calendar_date.request_window.open?

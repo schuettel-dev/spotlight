@@ -6,7 +6,7 @@ class HeroiconComponent < ViewComponent::Base
   end
 
   def call
-    find_icon_path.read.html_safe
+    find_icon_path.read.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

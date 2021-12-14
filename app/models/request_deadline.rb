@@ -13,7 +13,7 @@ class RequestDeadline < ApplicationRecord
     for_date(CalendarService.today_in_time_zone)
   end
 
-  def set_time(hh_mm_string)
+  def set_time(hh_mm_string) # rubocop:disable Naming/AccessorMethodName
     hour, minute = hh_mm_string.split(':').map(&:to_i)
     self.time = time.change(hour: hour, min: minute)
   end

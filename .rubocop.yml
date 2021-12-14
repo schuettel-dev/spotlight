@@ -20,6 +20,9 @@ Rails:
 Gemspec/DateAssignment:
   Enabled: true
 
+Gemspec/RequireMFA:
+  Enabled: true
+
 Layout/BeginEndAlignment:
   Enabled: true
 
@@ -41,6 +44,9 @@ Layout/SpaceBeforeBrackets:
   Enabled: true
 
 Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
   Enabled: true
 
 Lint/AmbiguousRange:
@@ -94,6 +100,9 @@ Lint/FloatComparison:
 Lint/IdentityComparison:
   Enabled: true
 
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
 Lint/LambdaWithoutLiteralBlock:
   Enabled: true
 
@@ -121,6 +130,9 @@ Lint/RaiseException:
   Enabled: true
 
 Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
   Enabled: true
 
 Lint/SelfAssignment:
@@ -156,6 +168,9 @@ Lint/UnreachableLoop:
 Lint/UselessMethodDefinition:
   Enabled: true
 
+Lint/UselessRuby2Keywords:
+  Enabled: true
+
 Lint/UselessTimes:
   Enabled: true
 
@@ -173,6 +188,7 @@ Metrics/ClassLength:
   Exclude:
   - test/models/game_test.rb
   - test/system/**/*
+  - test/components/**/*
   - test/controllers/**/*
 
 Metrics/MethodLength:
@@ -277,6 +293,9 @@ Rails/Pluck:
 Rails/PluckInWhere:
   Enabled: true
 
+Rails/RedundantTravelBack:
+  Enabled: true
+
 Rails/RenderInline:
   Enabled: true
 
@@ -306,6 +325,9 @@ Rails/WhereExists:
   Enabled: true
 
 Rails/WhereNot:
+  Enabled: true
+
+Security/IoMethods:
   Enabled: true
 
 Style/AccessorGrouping:
@@ -396,8 +418,17 @@ Style/NegatedIfElseCondition:
 Style/NilLambda:
   Enabled: true
 
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
 Style/NumericLiterals:
   Enabled: false
+
+Style/OpenStructUse:
+  Enabled: true
 
 Style/OptionalBooleanParameter:
   Enabled: true
@@ -427,6 +458,9 @@ Style/RedundantSelfAssignment:
   Enabled: true
 
 Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/SelectByRegexp:
   Enabled: true
 
 Style/SingleArgumentDig:

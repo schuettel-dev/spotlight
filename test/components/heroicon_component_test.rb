@@ -7,9 +7,9 @@ class HeroiconComponentTest < ViewComponent::TestCase
   end
 
   test 'raise if icon not exists' do
-    error = assert_raises(Errno::ENOENT) {
-      render_inline(HeroiconComponent.new(:'whoops'))
-    }
+    error = assert_raises(Errno::ENOENT) do
+      render_inline(HeroiconComponent.new(:whoops))
+    end
 
     assert_match /^No such file or directory/, error.message
   end

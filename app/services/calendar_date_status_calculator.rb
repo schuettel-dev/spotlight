@@ -1,5 +1,4 @@
 class CalendarDateStatusCalculator
-
   delegate :caretaker_informed?, :caretaker_confirmed_light?, :caretaker_dismissed_light?,
            :request_window, :date, to: :@calendar_date
 
@@ -13,6 +12,7 @@ class CalendarDateStatusCalculator
 
   private
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def find_status
     return :date_in_future if date_in_future?
     return :not_active_today if not_active_today?
@@ -23,6 +23,7 @@ class CalendarDateStatusCalculator
     return :requesting_light if requesting_light?
     return :awaiting_light_requests if awaiting_light_requests?
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def date_in_future?
     date.to_time.asctime.in_time_zone('Europe/Zurich').future?

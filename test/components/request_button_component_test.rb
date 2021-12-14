@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RequestButtonComponentTest < ViewComponent::TestCase
-
   setup do
     @thursday = calendar_dates(:thursday)
     @thursday.update!(caretaker_informed_at: nil)
