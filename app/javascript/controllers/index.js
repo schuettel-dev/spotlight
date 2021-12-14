@@ -3,5 +3,5 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import RequestDeadlineFormController from "./request_deadline_form_controller.js"
+application.register("request-deadline-form", RequestDeadlineFormController)

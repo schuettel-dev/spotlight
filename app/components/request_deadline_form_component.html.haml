@@ -1,5 +1,28 @@
-.grid.grid-cols-12.w-full.py-8{ class: text_color_class }
-  .col-span-1.flex.items-center.justify-center= check_box_tag "weekday_#{request_deadline.weekday}", request_deadline.active?, request_deadline.active?
-  .col-span-8.flex.items-center.justify-start= t('date.day_names')[request_deadline.weekday]
+%turbo-frame{ id: dom_id(request_deadline), 'data-controller': 'request-deadline-form' }
+  = form_with(model: [:admin, request_deadline]) do |f|
+    .flex.flex-col{ class: css_classes }
+      .grid.grid-cols-12.w-full.py-8.px-4
+        .col-span-1.flex.items-center.justify-start
+          = f.label :active, class: 'hidden'
+          = f.check_box :active, 'data-action': 'request-deadline-form#submitFormIfClosed'
+        .col-span-8.flex.items-center.justify-start
+          = t('date.day_names')[request_deadline.weekday]
 
-  .col-span-3.flex.items-center.justify-end= l(request_deadline.time, format: :day_time_only)
+        .col-span-3.flex.items-center.justify-end
+          .hidden{ 'data-request-deadline-form-target': 'jsOnly jsAction' }
+            .flex.gap-x-4.items-center.justify-center
+              - if request_deadline.active?
+                %button.text-xs.text-sky-700.hover:text-sky-500{ type: :button, 'data-action': 'request-deadline-form#showForm', 'data-turbo': false }
+                  = t('shared.actions.edit')
+
+              .text-base= l(request_deadline.time, format: :day_time_only)
+
+          .flex.items-center{ 'data-request-deadline-form-target': 'noJs formElement' }
+            = f.label :time, class: 'hidden'
+            = f.select :time, time_select_options, { selected: selected_time }, { class: 'admin-request-deadline--time-selects' }
+
+      .flex.flex-col.gap-y-4.px-4.pb-8{ 'data-request-deadline-form-target': 'noJs formElement' }
+        = f.submit t('shared.actions.save'), class: 'text-base w-full bg-gray-600 text-center p-2 rounded text-gray-400 overflow-hidden cursor-pointer hover:bg-gray-700 transition'
+
+        %button.text-xs.text-sky-700.hover:text-sky-500{ type: :button, 'data-request-deadline-form-target': 'jsOnly', 'data-action': 'request-deadline-form#hideForm', 'data-turbo': false }
+          = t('shared.actions.cancel')

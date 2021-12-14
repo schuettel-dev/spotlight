@@ -1,6 +1,8 @@
 class RequestDeadline < ApplicationRecord
   validates :time, presence: true
 
+  after_save :broadcast_request_deadline
+
   scope :ordered, -> { order(Arel.sql('(weekday + 6) % 7')) }
 
   def self.for_date(date)
@@ -11,9 +13,27 @@ class RequestDeadline < ApplicationRecord
     for_date(CalendarService.today_in_time_zone)
   end
 
-  def update_time(hh_mm_string)
+  def set_time(hh_mm_string)
     hour, minute = hh_mm_string.split(':').map(&:to_i)
     self.time = time.change(hour: hour, min: minute)
+  end
+
+  def update_time(hh_mm_string)
+    set_time(hh_mm_string)
     save
+  end
+
+  def toggle_active!
+    update!(active: !active)
+  end
+
+  private
+
+  def broadcast_request_deadline
+    broadcast_replace_to(
+      'request_deadlines',
+      target: ActionView::RecordIdentifier.dom_id(self),
+      html: ApplicationController.render(RequestDeadlineFormComponent.new(request_deadline: self), layout: false)
+    )
   end
 end

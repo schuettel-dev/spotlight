@@ -1,6 +1,6 @@
-%h1= t('.title')
+%h2.text-center.text-sky-300.uppercase.text-sm.mb-2= t('.request_deadlines')
 
-%h2= t('.request_deadlines')
-
-.flex.flex-col.divide-y.divide-gray-800.text-gray-300.text-xl
-  = render RequestDeadlineFormComponent.with_collection(request_deadlines)
+= turbo_stream_from('request_deadlines')
+%div{ id: 'request_deadlines' }
+  .flex.flex-col.divide-y.bg-gray-800.divide-gray-900.text-gray-300.text-xl.rounded-lg.overflow-hidden
+    = render RequestDeadlineFormComponent.with_collection(request_deadlines)

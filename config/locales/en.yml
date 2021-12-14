@@ -11,6 +11,9 @@ en:
           light_dismissed: "Light requests have been dismissed"
           not_requested_until_deadline: "Light was not requested until deadline"
           not_active_today: "Not active today"
+      request_deadline:
+        active: "Weekday is activated"
+        time: "Time"
     errors:
       models:
         light_request:
@@ -60,6 +63,10 @@ en:
     deadlines: "General deadlines"
   shared:
     actions:
+      cancel: "Cancel"
+      close: "Close"
+      edit: "Edit"
+      save: "Save"
       sign_out: Sign out
     errors:
       access_denied_for_non_admins: "Only admins can access this."

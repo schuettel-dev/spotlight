@@ -35,10 +35,12 @@ class RequestButtonComponentTest < ViewComponent::TestCase
     end
 
     travel_to '2001-01-04 00:00:01 +01:00' do
+      @thursday.reset_status
       component = new_component(calendar_date: @thursday, user_light_request: @martins_light_request)
       assert component.render?, 'should render: time window is open and light request is not persisted'
 
       @martins_light_request.save!
+      @thursday.reset_status
 
       component = new_component(calendar_date: @thursday, user_light_request: @martins_light_request)
       assert_not component.render?, 'should not render because light request is persisted'

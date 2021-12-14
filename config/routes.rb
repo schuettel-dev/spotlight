@@ -7,5 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :configuration, only: :show
+    resources :request_deadlines, only: %i[update] do
+      put :toggle_active, on: :member
+    end
   end
 end

@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  @apply h-full bg-cover bg-no-repeat bg-gray-900 text-gray-200;
+}
+
 body {
-  @apply bg-gray-900 text-gray-200 h-screen my-10;
+  @apply my-10;
 }
 
 a {
@@ -62,3 +65,11 @@ em {
 .request-deadlines--weekday-inactive { @apply text-gray-500; }
 .request-deadlines--weekday-current { @apply text-sky-300; }
 .request-deadlines--weekday-active { @apply text-gray-300; }
+
+.admin-request-deadline--active {}
+
+.admin-request-deadline--inactive { @apply text-gray-600; }
+
+.admin-request-deadline--time-selects {
+  @apply bg-gray-700 text-gray-200 rounded border-gray-800;
+}
