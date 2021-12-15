@@ -1,0 +1,13 @@
+.mb-8
+  = link_to admin_configuration_path, class: 'text-gray-500 hover:text-sky-300 flex items-center' do
+    .h-4.w-4.mr-1
+      = render HeroiconComponent.new(:'chevron-left')
+    = t('shared.actions.back')
+
+%h2.text-center.text-sky-300.uppercase.text-sm.mb-2
+  = RequestDeadline.model_name.human(count: 2)
+
+= turbo_stream_from('request_deadlines')
+%div{ id: 'request_deadlines' }
+  .flex.flex-col.divide-y.bg-gray-800.divide-gray-900.text-gray-300.text-xl.rounded-lg.overflow-hidden
+    = render Admin::RequestDeadlineFormComponent.with_collection(request_deadlines)

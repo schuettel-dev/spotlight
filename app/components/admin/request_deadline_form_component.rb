@@ -1,10 +1,11 @@
-class RequestDeadlineFormComponent < ViewComponent::Base
+class Admin::RequestDeadlineFormComponent < ViewComponent::Base
   attr_reader :request_deadline
 
   with_collection_parameter :request_deadline
 
   def initialize(request_deadline:)
     @request_deadline = request_deadline
+    super()
   end
 
   def css_classes

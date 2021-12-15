@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RequestDeadlineFormComponentTest < ViewComponent::TestCase
+class Admin::RequestDeadlineFormComponentTest < ViewComponent::TestCase
   test 'render' do
     component = new_component(request_deadline: request_deadlines(:wednesday))
     render_inline component

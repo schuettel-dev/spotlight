@@ -4,8 +4,11 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   test 'show request deadlines' do
     sign_in_as :marge
     click_on 'Admin'
+    click_on 'Request deadlines'
 
-    assert_selector 'h2', text: 'Request Deadlines'
+    assert_link 'Back', href: '/admin/configuration'
+
+    assert_selector 'h2', text: 'Request deadlines'
     assert_request_deadline 'Monday', true, '15:00'
     assert_request_deadline 'Tuesday', true, '16:00'
     assert_request_deadline 'Wednesday', true, '17:00'
@@ -19,6 +22,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     using_browser do
       sign_in_as :marge
       click_on 'Admin'
+      click_on 'Request deadlines'
 
       element = find_request_deadline_for('Wednesday')
       assert element.has_text?('17:00')
@@ -37,6 +41,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     using_browser do
       sign_in_as :marge
       click_on 'Admin'
+      click_on 'Request deadlines'
 
       element = find_request_deadline_for('Wednesday')
 

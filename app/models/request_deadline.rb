@@ -33,7 +33,7 @@ class RequestDeadline < ApplicationRecord
     broadcast_replace_to(
       'request_deadlines',
       target: ActionView::RecordIdentifier.dom_id(self),
-      html: ApplicationController.render(RequestDeadlineFormComponent.new(request_deadline: self), layout: false)
+      html: ApplicationController.render(Admin::RequestDeadlineFormComponent.new(request_deadline: self), layout: false)
     )
   end
 end
