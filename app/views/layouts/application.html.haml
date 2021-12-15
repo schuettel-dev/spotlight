@@ -21,13 +21,20 @@
       %main.mx-4.md:mx-0
         = yield
       %footer.flex.justify-center.mt-32.mb-16
-        - if user_signed_in?
-          = button_to destroy_user_session_path, class: 'shy flex items-center', method: :delete do
-            .h-5.w-5.mr-2
-              = render HeroiconComponent.new(:logout)
-            = t('shared.actions.sign_out')
-        - else
-          = link_to new_user_session_path, class: 'shy flex items-center' do
-            .h-5.w-5.mr-2
-              = render HeroiconComponent.new(:logout)
-            = t('shared.actions.sign_in')
+        .flex.flex-col.gap-y-4.justify-center
+          - if user_signed_in?
+            - if current_user.admin?
+              = link_to admin_configuration_path, class: 'shy flex items-center mx-auto' do
+                .h-5.w-5.mr-2
+                  = render HeroiconComponent.new(:adjustments)
+                = t('shared.admin')
+
+              = button_to destroy_user_session_path, class: 'shy flex items-center mx-auto', method: :delete do
+                .h-5.w-5.mr-2
+                  = render HeroiconComponent.new(:logout)
+                = t('shared.actions.sign_out')
+          - else
+            = link_to new_user_session_path, class: 'shy flex items-center' do
+              .h-5.w-5.mr-2
+                = render HeroiconComponent.new(:logout)
+              = t('shared.actions.sign_in')
