@@ -6,14 +6,14 @@ ruby '3.0.3'
 # gem "bcrypt", "~> 3.1.7"
 # gem "rails", git: 'https://github.com/rails/rails.git', branch: 'main'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'cssbundling-rails', '>= 0.1.0'
+gem 'cssbundling-rails'
 gem 'devise', git: 'https://github.com/heartcombo/devise.git', branch: 'main'
 gem 'haml-rails'
 gem 'hotwire-rails'
-gem 'jsbundling-rails', '~> 0.1.0'
+gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 7.0.0.rc1'
+gem 'rails'
 gem 'redis', '~> 4.0'
 gem 'ruby-sun-times', require: false
 gem 'sprockets-rails', '>= 2.0.0'
