@@ -1,7 +1,7 @@
-const showElement = (element) => element.classList.remove('hidden');
-const hideElement = (element) => element.classList.add('hidden')
+const show = (element) => element.classList.remove('hidden');
+const hide = (element) => element.classList.add('hidden')
 
-const hideAll = (elements) => elements.map(hideElement);
-const showAll = (elements) => elements.map(showElement);
+const hideAll = (elements) => elements.map(hide);
+const showAll = (elements) => elements.map(show);
 
-export { hideAll, showAll };
+export { show, hide, hideAll, showAll };

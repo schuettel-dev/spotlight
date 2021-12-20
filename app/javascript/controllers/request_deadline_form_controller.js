@@ -46,9 +46,4 @@ export default class extends Controller {
     hideAll(this.formElementTargets);
     showAll(this.jsActionTargets);
   }
-
-  // prepare() {
-  //   showAll(this.jsOnlyTargets);
-  //   hideAll(this.noJsTargets);
-  // }
 }

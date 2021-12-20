@@ -1,0 +1,6 @@
+
+.text-gray-600.text-right.px-2.mb-2
+  = t('shared.models.user.with_count', count: users.count)
+
+%ul.bg-gray-800.rounded-lg.overflow-hidden.divide-y.divide-gray-900.text-gray-300
+  = render Admin::UserListItemComponent.with_collection(users)

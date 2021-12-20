@@ -1,0 +1,20 @@
+%li.p-4.flex-col{ 'data-controller': 'user-list-item', 'data-user-list-item-user-id-value': user.id }
+  .flex
+    .flex.grow.items-baseline
+      .grow.text-2xl.flex.items-baseline.gap-x-2
+        %div= nickname
+        %div= render User::StatusBadgeComponent.new(status: user.status)
+        .div= role_badge
+      .shrink-0.hidden{ 'data-user-list-item-target': 'jsOnly' }
+        - unless user.role_superadmin?
+          = button_tag class: 'p-2', 'data-action': 'user-list-item#toggleForm', role: :button do
+            .h-5.w-5.text-gray-500{ 'data-user-list-item-target': 'openFormIcon' }
+              = render HeroiconComponent.new(:'chevron-down')
+            .h-5.w-5.text-gray-500.hidden{ 'data-user-list-item-target': 'closeFormIcon' }
+              = render HeroiconComponent.new(:'chevron-up')
+
+  .flex.text-gray-500.text-sm
+    = t('shared.models.light_request.with_count', count: user.light_requests.count)
+
+  %div{ 'data-user-list-item-target': 'form' }
+    = render Admin::UserFormComponent.new(user: user)

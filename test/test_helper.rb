@@ -29,6 +29,12 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+
+  def assert_access_denied(alert_message)
+    follow_redirect!
+    assert_response :success
+    assert_equal alert_message, flash[:alert]
+  end
 end
 
 class ViewComponent::TestCase

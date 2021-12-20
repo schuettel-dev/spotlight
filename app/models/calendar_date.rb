@@ -6,7 +6,7 @@ class CalendarDate < ApplicationRecord
 
   has_many :light_requests, dependent: :destroy
 
-  scope :with_light_requests, -> { left_outer_joins(:light_requests).includes(:light_requests) }
+  scope :with_light_requests, -> { includes(:light_requests).references(:light_requests) }
 
   def self.for_today
     find_or_initialize_by(date: CalendarService.today_in_time_zone)

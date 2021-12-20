@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :request_deadlines, only: %i[index update] do
       put :toggle_active, on: :member
     end
+
+    resources :users, only: %i[index update]
   end
 end

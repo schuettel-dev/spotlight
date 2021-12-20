@@ -1,10 +1,12 @@
 DEFAULTS: &DEFAULTS
   encrypted_password: "$2a$12$nyvXrSRtD41oay.jfQD/B.0f3OSEf6kRq5ennO9bxkCWF7efZGW5W" # -> "123456"
+  status: "unverified"
 
 bart:
   <<: *DEFAULTS
   nickname: "bart"
   email: "bart@simp.sons"
+  status: "verified"
 
 milhouse:
   <<: *DEFAULTS
@@ -51,21 +53,25 @@ marge:
   nickname: "marge"
   email: "marge@simp.sons"
   role: "admin"
+  status: "verified"
 
 ned:
   <<: *DEFAULTS
   nickname: "ned"
   email: "ned@simp.sons"
   role: "admin"
+  status: "verified"
 
 willie:
   <<: *DEFAULTS
   nickname: "willie"
   email: "willie@simp.sons"
   role: "caretaker"
+  status: "verified"
 
 frink:
   <<: *DEFAULTS
   nickname: "frink"
   email: "frink@simp.sons"
   role: "superadmin"
+  status: "verified"

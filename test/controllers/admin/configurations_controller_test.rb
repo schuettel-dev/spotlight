@@ -18,12 +18,4 @@ class Admin::ConfigurationsControllerTest < ActionDispatch::IntegrationTest
     get admin_configuration_path
     assert_response :success
   end
-
-  private
-
-  def assert_access_denied(alert_message)
-    follow_redirect!
-    assert_response :success
-    assert_equal alert_message, flash[:alert]
-  end
 end
