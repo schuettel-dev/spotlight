@@ -1,10 +1,11 @@
 require 'test_helper'
 
 class Admin::UserListComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(Admin::UserListComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test 'render' do
+    render_inline new_component(users: User.all)
+    assert_selector '#admin_user_list'
+    assert_text '13 users'
+    assert_selector 'ul'
+    assert_selector 'ul li', count: 13
   end
 end

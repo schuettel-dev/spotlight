@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class Admin::UserListItemComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(Admin::UserListItemComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test 'render' do
+    render_inline new_component(user: users(:bart))
+    assert_selector 'li'
+    assert_text 'bart'
+    assert_button 'Unverify'
   end
 end

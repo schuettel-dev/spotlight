@@ -83,6 +83,7 @@ en:
     deadlines: "General deadlines"
   shared:
     actions:
+      back: "Back"
       cancel: "Cancel"
       close: "Close"
       edit: "Edit"

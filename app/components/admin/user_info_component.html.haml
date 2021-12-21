@@ -1,9 +1,12 @@
-.flex.flex-col{ id: dom_id, 'data-controller': 'user-info', 'data-user-info-user-id-value': user.id }
+.flex.flex-col{ id: to_dom_id, 'data-controller': 'user-info', 'data-user-info-user-id-value': user.id }
   .flex.grow.items-baseline
     .grow.text-2xl.flex.items-baseline.gap-x-2
-      %div= nickname
-      %div= render User::StatusBadgeComponent.new(status: user.status)
-      .div= role_badge
+      %div.user--nickname
+        = nickname
+      %div.user--status-badge
+        = render User::StatusBadgeComponent.new(status: user.status)
+      .div.user--role-badge
+        = role_badge
     .shrink-0.hidden{ 'data-user-info-target': 'jsOnly' }
       - unless user.role_superadmin?
         = button_tag class: 'p-2', 'data-action': 'user-info#toggleUserForm', role: :button do

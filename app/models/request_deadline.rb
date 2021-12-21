@@ -30,10 +30,11 @@ class RequestDeadline < ApplicationRecord
   private
 
   def broadcast_request_deadline
+    component = Admin::RequestDeadlineFormComponent.new(request_deadline: self)
     broadcast_replace_to(
       'request_deadlines',
-      target: ActionView::RecordIdentifier.dom_id(self),
-      html: ApplicationController.render(Admin::RequestDeadlineFormComponent.new(request_deadline: self), layout: false)
+      target: component.to_dom_id,
+      html: ApplicationController.render(component, layout: false)
     )
   end
 end

@@ -60,7 +60,7 @@ class User < ApplicationRecord
     component = Admin::UserInfoComponent.new(user: self)
     broadcast_replace_to(
       'admin_user_list',
-      target: component.dom_id,
+      target: component.to_dom_id,
       html: ApplicationController.render(component, layout: false)
     )
   end

@@ -1,2 +1,11 @@
+.mb-8
+  = link_to admin_configuration_path, class: 'text-gray-500 hover:text-sky-300 flex items-center' do
+    .h-4.w-4.mr-1
+      = render HeroiconComponent.new(:'chevron-left')
+    = t('shared.actions.back')
+
+%h2.text-center.text-sky-300.uppercase.text-sm.mb-2
+  = User.model_name.human(count: 2)
+
 = turbo_stream_from('admin_user_list')
 = render Admin::UserListComponent.new(users: users)

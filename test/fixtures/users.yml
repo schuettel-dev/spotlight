@@ -47,6 +47,7 @@ kearney:
   <<: *DEFAULTS
   nickname: "kearney"
   email: "kearney@simp.sons"
+  status: "blocked"
 
 marge:
   <<: *DEFAULTS

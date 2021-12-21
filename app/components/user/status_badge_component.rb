@@ -1,16 +1,15 @@
 class User::StatusBadgeComponent < ViewComponent::Base
   attr_reader :status
 
-  USER_STATUS_CSS_CLASSES = {
-    unverified: :NONE,
-    verified: 'text-green-500',
-    blocked: 'text-rose-400'
-  }.freeze
-
-  USER_STATUS_ICON = {
-    unverified: :NONE,
-    verified: :'badge-check',
-    blocked: :ban
+  USER_STATUSES = {
+    verified: {
+      css: 'text-green-500',
+      icon: :'badge-check'
+    },
+    blocked: {
+      css: 'text-rose-400',
+      icon: :ban
+    }
   }.freeze
 
   def initialize(status:)
@@ -19,20 +18,20 @@ class User::StatusBadgeComponent < ViewComponent::Base
   end
 
   def render?
-    status != :unverified
+    USER_STATUSES.keys.include?(status)
   end
 
   def css_classes
-    USER_STATUS_CSS_CLASSES[status]
+    USER_STATUSES.dig(status, :css)
   end
 
   def icon
-    render HeroiconComponent.new(find_user_status_icon_key) if find_user_status_icon_key != :NONE
+    render HeroiconComponent.new(find_user_status_icon_key)
   end
 
   private
 
   def find_user_status_icon_key
-    USER_STATUS_ICON[status]
+    USER_STATUSES.dig(status, :icon)
   end
 end

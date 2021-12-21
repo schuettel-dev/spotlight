@@ -1,7 +1,6 @@
-%li.p-4.flex-col{ 'data-controller': 'user-list-item', 'data-user-list-item-user-id-value': user.id, 'data-action': 'user-form-toggled@window->user-list-item#render' }
+%li.p-4.flex.flex-col{ 'data-controller': 'user-list-item', 'data-user-list-item-user-id-value': user.id, 'data-action': 'user-form-toggled@window->user-list-item#render' }
   %div
     = render Admin::UserInfoComponent.new(user: user)
 
   %div{ 'data-user-list-item-target': 'form' }
-    = turbo_frame_tag dom_id(user) do
-      = render Admin::UserFormComponent.new(user: user)
+    = render Admin::UserFormComponent.new(user: user)

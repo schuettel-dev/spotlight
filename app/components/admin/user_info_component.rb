@@ -12,7 +12,7 @@ class Admin::UserInfoComponent < ViewComponent::Base
     render User::RoleBadgeComponent.new(user_role: @user.role)
   end
 
-  def dom_id
+  def to_dom_id
     "#{ActionView::RecordIdentifier.dom_id(user)}_info"
   end
 end

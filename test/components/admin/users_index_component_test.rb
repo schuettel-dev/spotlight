@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class Admin::UsersIndexComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(Admin::UsersIndexComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test 'render' do
+    render_inline new_component(users: User.all)
+    assert_link 'Back', href: '/admin/configuration'
+    assert_selector 'h2', text: 'Users'
+    assert_selector 'ul'
   end
 end

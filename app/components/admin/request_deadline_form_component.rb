@@ -20,6 +20,10 @@ class Admin::RequestDeadlineFormComponent < ViewComponent::Base
     @time_select_options ||= find_time_select_options
   end
 
+  def to_dom_id
+    ActionView::RecordIdentifier.dom_id(request_deadline)
+  end
+
   private
 
   def to_formatted_time(value)
