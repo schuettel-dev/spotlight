@@ -7,5 +7,8 @@ import { application } from "./application"
 import RequestDeadlineFormController from "./request_deadline_form_controller.js"
 application.register("request-deadline-form", RequestDeadlineFormController)
 
+import UserInfoController from "./user_info_controller.js"
+application.register("user-info", UserInfoController)
+
 import UserListItemController from "./user_list_item_controller.js"
 application.register("user-list-item", UserListItemController)

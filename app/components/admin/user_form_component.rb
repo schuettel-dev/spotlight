@@ -11,6 +11,6 @@ class Admin::UserFormComponent < ViewComponent::Base
   end
 
   def role_selection
-    I18n.t('activerecord.attributes.user.roles').slice(:admin, :caretaker).map(&:reverse)
+    I18n.t('activerecord.attributes.user.roles').slice(:user, :admin, :caretaker).map(&:reverse)
   end
 end

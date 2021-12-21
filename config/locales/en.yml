@@ -36,6 +36,9 @@ en:
   admin:
     configurations_show_component:
       admin_area: "Admin area"
+    user_form_component:
+      actions:
+        update_role: "Update role"
     users:
       update:
         success: "User updated successfully."

@@ -11,13 +11,15 @@ class User < ApplicationRecord
   validate :verified_if_admin
   validate :not_updating_superadmin
 
-  after_create :broadcast_user_list
+  after_create :broadcast_admin_user_list
+  after_update :broadcast_admin_user_info
+  after_destroy :broadcast_admin_user_list
 
   enum role: { user: 'user', admin: 'admin', caretaker: 'caretaker', superadmin: 'superadmin' }, _prefix: true
   enum status: { unverified: 'unverified', verified: 'verified', blocked: 'blocked' }
 
   scope :ordered_by_nickname, -> { order(Arel.sql('lower(nickname) ASC')) }
-  scope :with_light_requests, -> { references(:light_requests).references(:light_requests) }
+  scope :with_light_requests, -> { includes(:light_requests).references(:light_requests) }
 
   def request_light_for_today
     light_request_for_today.save
@@ -44,13 +46,22 @@ class User < ApplicationRecord
     errors.add(:role, :updating_from_or_to_superadmin_is_not_allowed)
   end
 
-  def broadcast_user_list
+  def broadcast_admin_user_list
     broadcast_replace_to(
-      'user_list',
-      target: 'user_list',
+      'admin_user_list',
+      target: 'admin_user_list',
       html: ApplicationController.render(
         Admin::UserListComponent.new(users: User.with_light_requests.ordered_by_nickname), layout: false
       )
+    )
+  end
+
+  def broadcast_admin_user_info
+    component = Admin::UserInfoComponent.new(user: self)
+    broadcast_replace_to(
+      'admin_user_list',
+      target: component.dom_id,
+      html: ApplicationController.render(component, layout: false)
     )
   end
 end

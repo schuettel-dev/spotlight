@@ -1,27 +1,35 @@
-.flex.pt-4.gap-x-4
-  - if user.blocked?
-    = link_to '#', class: 'py-1 px-3 text-gray-300 bg-gray-700 hover:bg-gray-600 transition rounded w-full flex justify-center' do
-      .flex.items-center.gap-x-2
-        .h-4.w-4
-          = render HeroiconComponent.new(:ban)
-        = t('shared.actions.unverify')
+.pt-4.flex.flex-col.gap-y-4
+  .flex.gap-x-4
+    - if user.role_user?
+      - if !user.blocked?
+        = form_with(model: [:admin, user], class: 'w-full') do |f|
+          = f.hidden_field :status, value: 'blocked'
+          = f.button type: :submit, class: 'py-2 px-3 text-gray-300 bg-gray-900 hover:bg-rose-900 transition rounded w-full flex justify-center' do
+            .flex.items-center.gap-x-2
+              .h-4.w-4
+                = render HeroiconComponent.new(:ban)
+              = t('shared.actions.block')
 
-  - elsif !user.admin?
-    = link_to '#', class: 'py-1 px-3 text-gray-300 bg-gray-900 hover:bg-rose-900 transition rounded w-full flex justify-center' do
-      .flex.items-center.gap-x-2
-        .h-4.w-4
-          = render HeroiconComponent.new(:ban)
-        = t('shared.actions.block')
+      - if !user.unverified?
+        = form_with(model: [:admin, user], class: 'w-full') do |f|
+          = f.hidden_field :status, value: 'unverified'
+          = f.button type: :submit, class: 'py-2 px-3 text-gray-300 bg-gray-700 hover:bg-gray-600 transition rounded w-full flex justify-center' do
+            .flex.items-center.gap-x-2
+              .h-4.w-4
+                = render HeroiconComponent.new(:ban)
+              = t('shared.actions.unverify')
 
-  - if !user.verified? && !user.admin?
-    = link_to '#', class: 'py-1 px-3 text-gray-300 bg-green-900 hover:bg-green-800 transition rounded w-full flex justify-center' do
-      .flex.items-center.gap-x-2
-        .h-4.w-4
-          = render HeroiconComponent.new(:'badge-check')
-        = t('shared.actions.verify')
+      - if !user.verified?
+        = form_with(model: [:admin, user], class: 'w-full') do |f|
+          = f.hidden_field :status, value: 'verified'
+          = f.button type: :submit, class: 'py-2 px-3 text-gray-300 bg-green-900 hover:bg-green-800 transition rounded w-full flex justify-center' do
+            .flex.items-center.gap-x-2
+              .h-4.w-4
+                = render HeroiconComponent.new(:'badge-check')
+              = t('shared.actions.verify')
 
-- if user.verified? && !user.role_superadmin?
-  .flex
-    = form_with(model: [:admin, user], html: { class: 'w-full' }) do |f|
-      = f.select :role, role_selection, {}, { class: 'bg-gray-700 border-gray-600 rounded w-full' }
-      = f.submit
+  - if user.verified? && !user.role_superadmin?
+    .flex.w-full
+      = form_with(model: [:admin, user], html: { class: 'w-full' }) do |f|
+        = f.select :role, role_selection, {}, { class: 'bg-gray-700 border-gray-600 rounded w-full', 'data-action': 'adminUserForm#submitForm' }
+        = f.submit t('.actions.update_role'), class: 'bg-gray-700 hover:bg-gray-600 w-full rounded text-center py-2 mt-2 cursor-pointer transition', 'data-admin-user-form-target': 'noJs'
