@@ -1,18 +1,19 @@
 import { Controller } from "@hotwired/stimulus";
 import { show, hide, showAll, hideAll } from "../../helpers/togglers.js";
-import { userFormOpened, toggleUserForm } from "../../storages/opened_user_forms_storage.js"
+import { listsStorage } from "../../storages/lists_storage.js";
 
 export default class extends Controller {
   static targets = ['jsOnly', 'openFormIcon', 'closeFormIcon'];
   static values = { userId: Number };
 
   connect() {
+    this.openedFormsList = listsStorage('openedUserForms')
     showAll(this.jsOnlyTargets);
     this.render();
   }
 
   render() {
-    if (userFormOpened(this.userIdValue)) {
+    if (this.openedFormsList.has(this.userIdValue)) {
       hideAll(this.openFormIconTargets);
       showAll(this.closeFormIconTargets);
     } else {
@@ -22,7 +23,21 @@ export default class extends Controller {
   }
 
   toggleUserForm() {
-    toggleUserForm(this.userIdValue);
+    this.openedFormsList.toggle(this.userIdValue);
+    this.notifyToggled();
     this.render();
+  }
+
+  notifyToggled() {
+    window.dispatchEvent(
+      new CustomEvent(
+        'admin--user-form-toggled',
+        {
+          detail: {
+            userId: this.userIdValue
+          }
+        }
+      )
+    );
   }
 }

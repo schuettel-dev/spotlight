@@ -1,17 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
 import { show, hide, showAll, hideAll } from "../../helpers/togglers.js";
-import { requestDeadlineFormOpened, toggleRequestDeadlineForm } from "../../storages/opened_request_deadline_forms_storage.js";
+import { listsStorage } from "../../storages/lists_storage.js";
 
 export default class extends Controller {
   static targets = ['form', 'openFormIcon', 'closeFormIcon'];
   static values = { requestDeadlineId: Number };
 
   connect() {
+    this.openedFormsList = listsStorage('openedRequestDeadlineForms');
     this.render();
   }
 
   render() {
-    if (requestDeadlineFormOpened(this.requestDeadlineIdValue)) {
+    if (this.openedFormsList.has(this.requestDeadlineIdValue)) {
       showAll(this.formTargets);
       hideAll(this.openFormIconTargets);
       showAll(this.closeFormIconTargets);
@@ -27,7 +28,7 @@ export default class extends Controller {
   }
 
   toggleRequestDeadlineForm() {
-    toggleRequestDeadlineForm(this.requestDeadlineIdValue);
+    this.openedFormsList.toggle(this.requestDeadlineIdValue)
     this.render();
   }
 }
