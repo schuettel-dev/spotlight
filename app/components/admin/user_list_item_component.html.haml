@@ -1,6 +1,6 @@
-%li.p-4.flex.flex-col{ 'data-controller': 'user-list-item', 'data-user-list-item-user-id-value': user.id, 'data-action': 'user-form-toggled@window->user-list-item#render' }
+%li.p-4.flex.flex-col{ 'data-controller': 'admin--user-list-item', 'data-admin--user-list-item-user-id-value': user.id, 'data-action': 'admin--user-form-toggled@window->admin--user-list-item#render' }
   %div
     = render Admin::UserInfoComponent.new(user: user)
 
-  %div{ 'data-user-list-item-target': 'form' }
+  %div{ 'data-admin--user-list-item-target': 'form' }
     = render Admin::UserFormComponent.new(user: user)

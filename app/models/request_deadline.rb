@@ -27,12 +27,16 @@ class RequestDeadline < ApplicationRecord
     update!(active: !active)
   end
 
+  def decorate
+    @decorate ||= RequestDeadlineDecorator.new(self)
+  end
+
   private
 
   def broadcast_request_deadline
-    component = Admin::RequestDeadlineFormComponent.new(request_deadline: self)
+    component = Admin::RequestDeadlineListItemComponent.new(request_deadline: self)
     broadcast_replace_to(
-      'request_deadlines',
+      'admin_request_deadlines',
       target: component.to_dom_id,
       html: ApplicationController.render(component, layout: false)
     )

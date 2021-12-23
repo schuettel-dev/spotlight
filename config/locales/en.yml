@@ -36,6 +36,9 @@ en:
   admin:
     configurations_show_component:
       admin_area: "Admin area"
+    request_deadline_form_component:
+      actions:
+        update_time: "Update time"
     user_form_component:
       actions:
         update_role: "Update role"

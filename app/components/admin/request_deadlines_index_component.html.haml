@@ -7,7 +7,5 @@
 %h2.text-center.text-sky-300.uppercase.text-sm.mb-2
   = RequestDeadline.model_name.human(count: 2)
 
-= turbo_stream_from('request_deadlines')
-%div{ id: 'request_deadlines' }
-  .flex.flex-col.divide-y.bg-gray-800.divide-gray-900.text-gray-300.text-xl.rounded-lg.overflow-hidden
-    = render Admin::RequestDeadlineFormComponent.with_collection(request_deadlines)
+= turbo_stream_from('admin_request_deadlines')
+= render Admin::RequestDeadlineListComponent.new(request_deadlines: request_deadlines)

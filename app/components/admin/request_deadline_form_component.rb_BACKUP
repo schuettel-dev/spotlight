@@ -1,19 +1,36 @@
 class Admin::RequestDeadlineFormComponent < ViewComponent::Base
+  include Turbo::FramesHelper
+
   attr_reader :request_deadline
+
+  with_collection_parameter :request_deadline
 
   def initialize(request_deadline:)
     @request_deadline = request_deadline
+    super()
+  end
+
+  def css_classes
+    request_deadline.active? ? 'admin-request-deadline--active' : 'admin-request-deadline--inactive'
   end
 
   def selected_time
-    request_deadline.decorate.display_time
+    to_formatted_time(request_deadline.time)
   end
 
   def time_select_options
     @time_select_options ||= find_time_select_options
   end
 
+  def to_dom_id
+    ActionView::RecordIdentifier.dom_id(request_deadline)
+  end
+
   private
+
+  def to_formatted_time(value)
+    I18n.l(value, format: :day_time_only)
+  end
 
   def find_time_select_options(args = {})
     current_time = args[:from] || DateTime.new(2000, 1, 1, 10, 0, 0, +0)
@@ -26,6 +43,6 @@ class Admin::RequestDeadlineFormComponent < ViewComponent::Base
       time_steps << current_time
     end
 
-    time_steps.map { |time_step| I18n.l(time_step, format: :day_time_only) }
+    time_steps.map(&method(:to_formatted_time))
   end
 end

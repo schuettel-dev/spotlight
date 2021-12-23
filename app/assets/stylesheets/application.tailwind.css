@@ -62,6 +62,14 @@ em {
   @apply bg-gray-800 mt-2 py-8 px-4 rounded-lg;
 }
 
+.spotlight-form--select {
+  @apply bg-gray-700 border-transparent rounded text-gray-400 hover:bg-gray-600 hover:text-gray-200 transition;
+}
+
+.spotlight-form--submit {
+  @apply bg-gray-700 text-gray-400 hover:bg-gray-600 hover:text-gray-200 rounded text-center cursor-pointer transition;
+}
+
 .request-deadlines--weekday-inactive { @apply text-gray-500; }
 .request-deadlines--weekday-current { @apply text-sky-300; }
 .request-deadlines--weekday-active { @apply text-gray-300; }
@@ -70,6 +78,6 @@ em {
 
 .admin-request-deadline--inactive { @apply text-gray-600; }
 
-.admin-request-deadline--time-selects {
+/*.admin-request-deadline--time-selects {
   @apply bg-gray-700 text-gray-200 rounded border-gray-800;
-}
+}*/

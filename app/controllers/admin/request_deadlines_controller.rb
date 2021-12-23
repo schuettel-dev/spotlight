@@ -1,12 +1,15 @@
 class Admin::RequestDeadlinesController < AdminController
   def index
-    request_deadlines = RequestDeadline.ordered
-    render Admin::RequestDeadlinesIndexComponent.new(request_deadlines: request_deadlines)
+    respond_to do |format|
+      format.html do
+        render Admin::RequestDeadlinesIndexComponent.new(request_deadlines: RequestDeadline.ordered)
+      end
+    end
   end
 
   def update
     request_deadline = RequestDeadline.find(params[:id])
-    request_deadline.set_time(request_deadline_params.delete(:time))
+    request_deadline.set_time(request_deadline_params.delete(:time)) if request_deadline_params.key?(:time)
 
     request_deadline.update(request_deadline_params)
 

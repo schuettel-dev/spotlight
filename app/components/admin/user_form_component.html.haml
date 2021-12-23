@@ -32,5 +32,5 @@
     - if render_form?
       .flex.w-full
         = form_with(model: [:admin, user], html: { class: 'w-full grid grid-cols-1 sm:grid-cols-4 gap-x-2 gap-y-2' }) do |f|
-          = f.select :role, role_selection, {}, { class: 'bg-gray-700 border-transparent rounded w-full sm:col-span-3' }
-          = f.submit t('.actions.update_role'), class: 'py-2 bg-gray-700 text-gray-400 hover:bg-gray-600 hover:text-gray-200 w-full rounded text-center cursor-pointer transition'
+          = f.select :role, role_selection, {}, { class: 'spotlight-form--select w-full sm:col-span-3' }
+          = f.submit t('.actions.update_role'), class: 'spotlight-form--submit py-2 w-full'

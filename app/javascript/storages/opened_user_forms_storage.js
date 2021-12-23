@@ -35,7 +35,7 @@ const toggleUserForm = (id) => {
   } else {
     addToOpenedUserForms(id);
   }
-  window.dispatchEvent(new CustomEvent('user-form-toggled', { detail: { userId: id }}));
+  window.dispatchEvent(new CustomEvent('admin--user-form-toggled', { detail: { userId: id }}));
 }
 
 export { userFormOpened, toggleUserForm };

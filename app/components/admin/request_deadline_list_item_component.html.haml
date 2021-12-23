@@ -1,0 +1,27 @@
+
+%li.py-6.flex.flex-col{ id: to_dom_id, 'data-controller': 'admin--request-deadline-list-item', 'data-admin--request-deadline-list-item-request-deadline-id-value': request_deadline.id, 'data-action': 'request-deadline-form-toggled@window->admin--request-deadline-list-item#render'}
+  = turbo_frame_tag "#{to_dom_id}_form" do
+    .flex.flex-col.gap-y-4
+      .flex
+        .grid.grid-cols-12.w-full.items-center.ml-4
+          %div.col-span-1
+            = form_with(model: [:admin, request_deadline], class: 'flex items-center') do |f|
+              = f.label :active, class: 'hidden'
+              = f.check_box :active, 'data-action': 'admin--request-deadline-list-item#submitForm'
+          %div.col-span-10.flex.text-xl
+            .grow
+              = display_weekday
+            .shrink-0
+              = display_time
+
+          .col-span-1.flex.items-center.justify-center
+            - if render_form?
+              = button_tag 'data-action': 'admin--request-deadline-list-item#toggleRequestDeadlineForm', role: :button do
+                .h-5.w-5.text-gray-500{ 'data-admin--request-deadline-list-item-target': 'openFormIcon' }
+                  = render HeroiconComponent.new(:'chevron-down')
+                .h-5.w-5.text-gray-500.hidden{ 'data-admin--request-deadline-list-item-target': 'closeFormIcon' }
+                  = render HeroiconComponent.new(:'chevron-up')
+
+      - if render_form?
+        .flex.mx-4{ 'data-admin--request-deadline-list-item-target': 'form' }
+          = render Admin::RequestDeadlineFormComponent.new(request_deadline: request_deadline)

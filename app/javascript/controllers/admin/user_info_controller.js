@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
-import { show, hide, showAll, hideAll } from "../helpers/togglers.js";
-import { userFormOpened, toggleUserForm } from "../storages/opened_user_forms_storage.js"
+import { show, hide, showAll, hideAll } from "../../helpers/togglers.js";
+import { userFormOpened, toggleUserForm } from "../../storages/opened_user_forms_storage.js"
 
 export default class extends Controller {
   static targets = ['jsOnly', 'openFormIcon', 'closeFormIcon'];

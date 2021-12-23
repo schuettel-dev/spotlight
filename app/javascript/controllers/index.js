@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import Admin__RequestDeadlineListItemController from "./admin/request_deadline_list_item_controller.js"
+application.register("admin--request-deadline-list-item", Admin__RequestDeadlineListItemController)
+
+import Admin__UserInfoController from "./admin/user_info_controller.js"
+application.register("admin--user-info", Admin__UserInfoController)
+
+import Admin__UserListItemController from "./admin/user_list_item_controller.js"
+application.register("admin--user-list-item", Admin__UserListItemController)
+
 import RequestDeadlineFormController from "./request_deadline_form_controller.js"
 application.register("request-deadline-form", RequestDeadlineFormController)
-
-import UserInfoController from "./user_info_controller.js"
-application.register("user-info", UserInfoController)
-
-import UserListItemController from "./user_list_item_controller.js"
-application.register("user-list-item", UserListItemController)

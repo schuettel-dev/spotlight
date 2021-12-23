@@ -70,6 +70,6 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   end
 
   def find_request_deadline_for(weekday)
-    find('div.request-deadline', text: weekday)
+    find('div.request-deadline--form', text: weekday)
   end
 end
