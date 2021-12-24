@@ -3,6 +3,11 @@ class Admin::RequestDeadlineFormComponent < ViewComponent::Base
 
   def initialize(request_deadline:)
     @request_deadline = request_deadline
+    super()
+  end
+
+  def render?
+    request_deadline.active?
   end
 
   def selected_time

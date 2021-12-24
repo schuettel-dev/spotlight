@@ -7,7 +7,7 @@
             = form_with(model: [:admin, request_deadline], class: 'flex items-center') do |f|
               = f.label :active, class: 'hidden'
               = f.check_box :active, 'data-action': 'admin--request-deadline-list-item#submitForm'
-          %div.col-span-10.flex.text-xl
+          %div.col-span-10.flex.text-xl{ class: css_classes }
             .grow
               = display_weekday
             .shrink-0
@@ -23,4 +23,4 @@
 
       - if render_form?
         .flex.mx-4{ 'data-admin--request-deadline-list-item-target': 'form' }
-          = render Admin::RequestDeadlineFormComponent.new(request_deadline: request_deadline)
+          = render form_component

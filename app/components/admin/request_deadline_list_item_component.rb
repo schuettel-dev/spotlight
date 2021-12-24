@@ -9,13 +9,22 @@ class Admin::RequestDeadlineListItemComponent < ViewComponent::Base
 
   def initialize(request_deadline:)
     @request_deadline = request_deadline.decorate
+    super()
   end
 
   def to_dom_id
     ActionView::RecordIdentifier.dom_id(request_deadline)
   end
 
+  def form_component
+    @form_component ||= Admin::RequestDeadlineFormComponent.new(request_deadline: request_deadline)
+  end
+
   def render_form?
-    request_deadline.active?
+    form_component.render?
+  end
+
+  def css_classes
+    'text-gray-500' unless request_deadline.active?
   end
 end

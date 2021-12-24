@@ -7,6 +7,6 @@ class Admin::RequestDeadlinesIndexComponentTest < ViewComponent::TestCase
 
     assert_link 'Back'
     assert_selector 'h2', text: 'Request deadlines'
-    assert_selector '.request-deadline--form', count: 7
+    assert_selector '#admin_request_deadlines li', count: 7
   end
 end

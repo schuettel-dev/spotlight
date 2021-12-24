@@ -28,9 +28,9 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
       assert element.has_text?('17:00')
 
       within(element) do
-        click_on 'Edit'
+        open_form
         select '17:45', from: 'Time'
-        click_on 'Save'
+        click_on 'Update time'
       end
 
       assert find_request_deadline_for('Wednesday').has_text?('17:45')
@@ -53,6 +53,27 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     end
   end
 
+  test 'forms stay opened after leaving and returning to page' do
+    using_browser do
+      sign_in_as :marge
+      click_on 'Admin'
+      click_on 'Request deadlines'
+
+      within find_request_deadline_for('Tuesday') do
+        assert_form_closed
+        open_form
+        assert_form_opened
+      end
+
+      click_on 'Back'
+      click_on 'Request deadlines'
+
+      within find_request_deadline_for('Tuesday') do
+        assert_form_opened
+      end
+    end
+  end
+
   private
 
   def assert_request_deadline(weekday, active, time)
@@ -70,6 +91,22 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   end
 
   def find_request_deadline_for(weekday)
-    find('div.request-deadline--form', text: weekday)
+    find('li', text: weekday)
+  end
+
+  def open_form
+    find('svg.heroicon-chevron-down').click
+  end
+
+  def assert_form_closed
+    assert_selector 'svg.heroicon-chevron-down', count: 1
+    assert_no_selector 'svg.heroicon-chevron-up'
+    assert_no_button 'Update time'
+  end
+
+  def assert_form_opened
+    assert_no_selector 'svg.heroicon-chevron-down'
+    assert_selector 'svg.heroicon-chevron-up', count: 1
+    assert_button 'Update time'
   end
 end

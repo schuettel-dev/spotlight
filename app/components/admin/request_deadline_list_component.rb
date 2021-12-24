@@ -3,5 +3,6 @@ class Admin::RequestDeadlineListComponent < ViewComponent::Base
 
   def initialize(request_deadlines:)
     @request_deadlines = request_deadlines
+    super()
   end
 end

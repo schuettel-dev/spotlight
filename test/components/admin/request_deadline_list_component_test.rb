@@ -1,10 +1,8 @@
-require "test_helper"
+require 'test_helper'
 
 class Admin::RequestDeadlineListComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(Admin::RequestDeadlineListComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test 'render' do
+    render_inline new_component(request_deadlines: RequestDeadline.all)
+    assert_selector 'ul li', count: 7
   end
 end
