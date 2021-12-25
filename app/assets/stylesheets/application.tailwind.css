@@ -62,6 +62,10 @@ em {
   @apply bg-gray-800 mt-2 py-8 px-4 rounded-lg;
 }
 
+.spotlight--ul {
+  @apply bg-gray-800 rounded-lg overflow-hidden divide-y divide-gray-900 text-gray-300;
+}
+
 .spotlight-form--select {
   @apply bg-gray-700 border-transparent rounded text-gray-400 hover:bg-gray-600 hover:text-gray-200 transition;
 }

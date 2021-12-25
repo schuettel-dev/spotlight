@@ -1,5 +1,6 @@
 class CalendarDate < ApplicationRecord
   include CalendarDateStatus
+  include Decorator
 
   validates :date, presence: true
   validates :date, uniqueness: true
@@ -7,6 +8,7 @@ class CalendarDate < ApplicationRecord
   has_many :light_requests, dependent: :destroy
 
   scope :with_light_requests, -> { includes(:light_requests).references(:light_requests) }
+  scope :ordered_antichronologically, -> { order(date: :desc) }
 
   def self.for_today
     find_or_initialize_by(date: CalendarService.today_in_time_zone)
@@ -14,6 +16,10 @@ class CalendarDate < ApplicationRecord
 
   def request_window
     @request_window ||= RequestWindowService.new(self)
+  end
+
+  def sun_sets_at
+    SchachenSunsets.on(date)
   end
 
   def caretaker_informed?

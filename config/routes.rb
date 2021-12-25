@@ -7,11 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :configuration, only: :show
-
-    resources :request_deadlines, only: %i[index update] do
-      put :toggle_active, on: :member
-    end
-
+    resources :light_requests, only: %i[index update]
+    resources :request_deadlines, only: %i[index update]
     resources :users, only: %i[index update]
   end
 end

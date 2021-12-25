@@ -1,4 +1,6 @@
 class RequestDeadline < ApplicationRecord
+  include Decorator
+
   validates :time, presence: true
 
   after_save :broadcast_request_deadline
@@ -25,10 +27,6 @@ class RequestDeadline < ApplicationRecord
 
   def toggle_active!
     update!(active: !active)
-  end
-
-  def decorate
-    @decorate ||= RequestDeadlineDecorator.new(self)
   end
 
   private
