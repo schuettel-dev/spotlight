@@ -12,6 +12,6 @@ class HeroiconComponent < ViewComponent::Base
   private
 
   def find_icon_path
-    Rails.root.join('app/assets/images/icons/', icon_name.to_s).sub_ext('.svg')
+    Rails.root.join('app/assets/images/heroicons/', icon_name.to_s).sub_ext('.svg')
   end
 end

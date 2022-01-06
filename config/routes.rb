@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :light_requests, only: %i[create destroy]
   get :remove_light_request, to: 'light_requests#destroy'
 
+  resource :profile, only: %i[show update]
+
   namespace :admin do
     resource :configuration, only: :show
     resources :calendar_dates, only: %i[index update]

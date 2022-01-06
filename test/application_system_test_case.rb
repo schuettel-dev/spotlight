@@ -18,4 +18,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       click_on 'Log in'
     end
   end
+
+  def navigate_to(user_menu_item)
+    within '.user-menu' do
+      find('.heroicon-menu').ancestor('button').click
+      click_on user_menu_item
+    end
+  end
 end

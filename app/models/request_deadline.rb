@@ -12,7 +12,7 @@ class RequestDeadline < ApplicationRecord
   end
 
   def self.for_today
-    for_date(CalendarService.today_in_time_zone)
+    for_date(CalendarService.today_in_zurich)
   end
 
   def set_time(hh_mm_string) # rubocop:disable Naming/AccessorMethodName

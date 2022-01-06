@@ -3,8 +3,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   encrypts :email, deterministic: true
+  encrypts :phone, deterministic: true
 
   has_many :light_requests, dependent: :destroy
+
+  before_validation :sanitize_mobile
 
   validates :nickname, presence: true
   validates :nickname, uniqueness: true
@@ -44,6 +47,14 @@ class User < ApplicationRecord
     return unless role_superadmin? || role_was == 'superadmin'
 
     errors.add(:role, :updating_from_or_to_superadmin_is_not_allowed)
+  end
+
+  def sanitize_mobile
+    return if mobile.blank?
+
+    self.mobile = mobile.gsub(/[^[0-9+]]*/, '')
+                        .gsub(/^(00|\+)/, '')
+                        .prepend('00')
   end
 
   def broadcast_admin_user_list

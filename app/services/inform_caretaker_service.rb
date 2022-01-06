@@ -19,7 +19,7 @@ class InformCaretakerService
   end
 
   def todays_weekday?
-    @calendar_date.date.wday == CalendarService.today_in_time_zone.wday
+    @calendar_date.date.wday == CalendarService.today_in_zurich.wday
   end
 
   def calendar_date_active?

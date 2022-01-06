@@ -9,33 +9,14 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
-    = Rails.configuration.settings.dig(:important_value)
     .max-w-prose.mx-auto.z-10
-      %header
-        = render TitleComponent.new
+      = render HeaderComponent.new(current_user: current_user)
       .flashes
         .flex.flex-col.gap-y-4.text-center.text-sm
           - if notice.present?
             .flash-notice.bg-gray-600.py-2.px-4.rounded.text-gray-300.mb-10= notice
           - if alert.present?
             .flash-alert.bg-gray-600.py-2.px-4.rounded.text-amber-100.mb-10= alert
-      %main.mx-4.md:mx-0
+      %main.md:mx-0
         = yield
       %footer.flex.justify-center.mt-32.mb-16
-        .flex.flex-col.gap-y-4.justify-center
-          - if user_signed_in?
-            - if current_user.admin?
-              = link_to admin_configuration_path, class: 'shy flex items-center mx-auto' do
-                .h-5.w-5.mr-2
-                  = render HeroiconComponent.new(:adjustments)
-                = t('shared.admin')
-
-              = button_to destroy_user_session_path, class: 'shy flex items-center mx-auto', method: :delete do
-                .h-5.w-5.mr-2
-                  = render HeroiconComponent.new(:logout)
-                = t('shared.actions.sign_out')
-          - else
-            = link_to new_user_session_path, class: 'shy flex items-center' do
-              .h-5.w-5.mr-2
-                = render HeroiconComponent.new(:logout)
-              = t('shared.actions.sign_in')

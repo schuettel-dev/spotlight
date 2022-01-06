@@ -1,5 +1,8 @@
-.flex.flex-col.bg-gray-800.p-4.rounded
+.flex.flex-col.gap-y-12.bg-gray-800.p-8.rounded
   .flex
+    .mx-auto
+      = render CalendarDateSheetComponent.new(date: calendar_date.date)
+  .flex.text-center.text-gray-300.justify-center.text-xl
     = calendar_date.display_light_requests_with_count
   .flex.gap-x-4.w-full
     - if !calendar_date.light_confirmed?

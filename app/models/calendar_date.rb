@@ -11,7 +11,7 @@ class CalendarDate < ApplicationRecord
   scope :ordered_antichronologically, -> { order(date: :desc) }
 
   def self.for_today
-    find_or_initialize_by(date: CalendarService.today_in_time_zone)
+    find_or_initialize_by(date: CalendarService.today_in_zurich)
   end
 
   def request_window

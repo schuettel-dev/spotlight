@@ -12,3 +12,6 @@ application.register("admin--user-info", Admin__UserInfoController)
 
 import Admin__UserListItemController from "./admin/user_list_item_controller.js"
 application.register("admin--user-list-item", Admin__UserListItemController)
+
+import Helpers__DropdownController from "./helpers/dropdown_controller.js"
+application.register("helpers--dropdown", Helpers__DropdownController)

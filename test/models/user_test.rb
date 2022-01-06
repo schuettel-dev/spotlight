@@ -69,4 +69,22 @@ class UserTest < ActiveSupport::TestCase
     assert User.role_caretaker.new.admin?
     assert User.role_superadmin.new.admin?
   end
+
+  test 'sanitizes mobile' do
+    assert_sanitized_mobile '', ''
+    assert_sanitized_mobile '0041791112233', '0041791112233'
+    assert_sanitized_mobile '0041791112233', ' 0041791112233 '
+    assert_sanitized_mobile '0041791112233', '41791112233'
+    assert_sanitized_mobile '0041791112233', '+41 79 111 22 33'
+    assert_sanitized_mobile '0041791112233', '0041 79 111 22 33'
+  end
+
+  private
+
+  def assert_sanitized_mobile(expected, input)
+    User.new(mobile: input).tap do |user|
+      user.validate
+      assert_equal expected, user.mobile
+    end
+  end
 end

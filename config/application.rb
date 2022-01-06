@@ -34,6 +34,6 @@ module Spotlight
 
     config.schachen_sunsets = config_for(:schachen_sunsets)
     config.settings = config_for(:settings)
-    config.eager_load_paths << Rails.root.join("config/settings.yml")
+    config.eager_load_paths << Rails.root.join('config/settings.yml')
   end
 end

@@ -1,0 +1,25 @@
+.flex.flex-col.gap-y-8
+  %div
+    = link_to root_path, class: 'text-gray-500 hover:text-sky-300 inline-flex items-center' do
+      .h-4.w-4.mr-1
+        = render HeroiconComponent.new(:'chevron-left')
+      = t('shared.actions.back')
+
+  = form_with(model: current_user, url: profile_path) do |f|
+    .flex.flex-col.gap-y-4
+      .flex.flex-col
+        = f.label :email, class: 'label'
+        = f.text_field :email, class: 'input', disabled: true
+
+      .flex.flex-col
+        = f.label :mobile, class: 'label'
+        = f.text_field :mobile, class: 'input'
+        .text-gray-500.text-xs.py-1
+          = t('.mobile_expected_format')
+
+      .flex.flex-col
+        = f.label :locale, class: 'label'
+        = f.select :locale, available_locales_options, {}, { class: 'input' }
+
+      .actions.py-4
+        = f.submit t('.update_profile'), class: 'input button'

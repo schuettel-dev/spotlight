@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply my-10;
+  @apply p-4;
 }
 
 a {
@@ -20,6 +20,10 @@ em {
 
 .input {
   @apply rounded py-1 px-2 w-full bg-gray-100 text-gray-900;
+}
+
+.input[disabled] {
+  @apply bg-gray-500 border-gray-600 text-gray-900;
 }
 
 .button {

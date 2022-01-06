@@ -1,0 +1,7 @@
+de:
+  available_locales:
+    de: Deutsch
+    en: Englisch
+  profiles:
+    update:
+      success: 'Profil wurde aktualisiert.'

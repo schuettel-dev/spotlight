@@ -3,15 +3,15 @@ module CalendarService
 
   TIME_ZONE = 'Europe/Zurich'.freeze
 
-  def today_in_time_zone
-    now_in_time_zone.to_date
+  def today_in_zurich
+    now_in_zurich.to_date
   end
 
-  def now_in_time_zone
+  def now_in_zurich
     Time.now.in_time_zone(TIME_ZONE)
   end
 
-  def all_day_in_time_zone(date)
+  def all_day_in_zurich(date)
     date.in_time_zone(TIME_ZONE).all_day
   end
 end

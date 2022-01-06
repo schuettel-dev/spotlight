@@ -15,12 +15,21 @@ en:
         active: "Weekday is activated"
         time: "Time"
       user:
+        locale: Language
+        mobile: Mobile
         roles:
           user: "User"
           admin: "Admin"
           caretaker: "Caretaker"
           superadmin: "Superadmin"
+        statuses:
+          unverified: Unverified
+          verified: Verified
+          blocked: Blocked
     models:
+      light_request:
+        one: "Light request"
+        other: "Light requests"
       request_deadline:
         one: "Request deadline"
         other: "Request deadlines"
@@ -46,8 +55,9 @@ en:
       update:
         success: "User updated successfully."
         failure: "There was a problem updating the user."
-  title_component:
-    at_skatepark_schachen_aarau: at Skatepark Schachen, Aarau
+  available_locales:
+    de: German
+    en: English
   date_section_component:
     sunset_at_around: Sunset at around
   request_button_component:
@@ -85,12 +95,18 @@ en:
     flow: "Flow"
     deadlines: "General deadlines"
   shared:
+    admin: Admin
+    profile: Profile
+    home: Home
+    today: Today
+    past: Past
     actions:
       back: "Back"
       cancel: "Cancel"
       close: "Close"
       edit: "Edit"
       save: "Save"
+      sign_in: Sign in
       sign_out: Sign out
     errors:
       access_denied_for_non_admins: "Only admins can access this."
@@ -103,8 +119,12 @@ en:
         with_count:
           one: "%{count} light request"
           other: "%{count} light requests"
-
-
+  profiles:
+    update:
+      success: Profile updated successfully.
+  profile_component:
+    mobile_expected_format: "Format: 0041791231010"
+    update_profile: Update profile
   status_section_component:
     no_light_today: No light today
     light_confirmed: Light confirmed

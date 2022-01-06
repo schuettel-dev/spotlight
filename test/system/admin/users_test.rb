@@ -65,7 +65,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
   private
 
   def navigate_to_admin_users
-    click_on 'Admin'
+    navigate_to 'Admin'
     click_on 'Users'
   end
 

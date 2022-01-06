@@ -1,4 +1,14 @@
 .flex.flex-col.gap-y-8
+  .flex
+    = link_to admin_configuration_path, class: 'text-gray-500 hover:text-sky-300 flex items-center' do
+      .h-4.w-4.mr-1
+        = render HeroiconComponent.new(:'chevron-left')
+      = t('shared.actions.back')
+
+  .flex
+    %h2.text-sky-300.uppercase.text-sm
+      = LightRequest.model_name.human(count: 2)
+
   .flex.flex-col
     %h3.mb-2.text-gray-500= t('shared.today')
     = render Admin::TodaysCalendarDateComponent.new(calendar_date: todays_calendar_date)

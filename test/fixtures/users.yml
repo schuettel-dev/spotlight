@@ -1,4 +1,5 @@
 DEFAULTS: &DEFAULTS
+  locale: 'en'
   encrypted_password: "$2a$12$nyvXrSRtD41oay.jfQD/B.0f3OSEf6kRq5ennO9bxkCWF7efZGW5W" # -> "123456"
   status: "unverified"
 

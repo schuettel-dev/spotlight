@@ -1,6 +1,17 @@
 %div{ id: 'admin_user_list' }
-  .text-gray-600.text-right.px-2.mb-2
+  .text-gray-500.text-right.px-2.mb-2.text-sm
     = t('shared.models.user.with_count', count: users.count)
 
   %ul.spotlight--ul
     = render Admin::UserListItemComponent.with_collection(users)
+
+  .flex.gap-x-8.mt-2.justify-center
+    .flex.items-center.gap-x-2
+      = render User::StatusBadgeComponent.new(status: :verified)
+      %span.text-sm.text-gray-600
+        = User.human_enum_name(:status, :verified)
+
+    .flex.items-center.gap-x-2
+      = render User::StatusBadgeComponent.new(status: :blocked)
+      %span.text-sm.text-gray-600
+        = User.human_enum_name(:status, :blocked)

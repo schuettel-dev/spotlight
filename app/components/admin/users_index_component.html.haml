@@ -4,7 +4,7 @@
       = render HeroiconComponent.new(:'chevron-left')
     = t('shared.actions.back')
 
-%h2.text-center.text-sky-300.uppercase.text-sm.mb-2
+%h2.text-sky-300.uppercase.text-sm.mb-2
   = User.model_name.human(count: 2)
 
 = turbo_stream_from('admin_user_list')

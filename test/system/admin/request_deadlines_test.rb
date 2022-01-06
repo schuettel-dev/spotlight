@@ -3,8 +3,7 @@ require 'application_system_test_case'
 class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   test 'show request deadlines' do
     sign_in_as :marge
-    click_on 'Admin'
-    click_on 'Request deadlines'
+    navigate_to_admin_request_deadliens
 
     assert_link 'Back', href: '/admin/configuration'
 
@@ -21,8 +20,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   test 'changes request deadline for wednesday with JS' do
     using_browser do
       sign_in_as :marge
-      click_on 'Admin'
-      click_on 'Request deadlines'
+      navigate_to_admin_request_deadliens
 
       element = find_request_deadline_for('Wednesday')
       assert element.has_text?('17:00')
@@ -40,8 +38,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   test 'deactivates request deadline for wednesday with JS' do
     using_browser do
       sign_in_as :marge
-      click_on 'Admin'
-      click_on 'Request deadlines'
+      navigate_to_admin_request_deadliens
 
       element = find_request_deadline_for('Wednesday')
 
@@ -56,8 +53,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   test 'forms stay opened after leaving and returning to page' do
     using_browser do
       sign_in_as :marge
-      click_on 'Admin'
-      click_on 'Request deadlines'
+      navigate_to_admin_request_deadliens
 
       within find_request_deadline_for('Tuesday') do
         assert_form_closed
@@ -75,6 +71,11 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
   end
 
   private
+
+  def navigate_to_admin_request_deadliens
+    navigate_to 'Admin'
+    click_on 'Request deadlines'
+  end
 
   def assert_request_deadline(weekday, active, time)
     find_request_deadline_for(weekday).tap do |element|

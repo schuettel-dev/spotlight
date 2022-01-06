@@ -1,10 +1,11 @@
-require "test_helper"
+require 'test_helper'
 
 class Admin::PastCalendarDatesComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(Admin::PastCalendarDatesComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  test '#render, multiple' do
+    assert false
+  end
+
+  test '#render, none' do
+    assert false
   end
 end
