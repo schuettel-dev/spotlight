@@ -34,11 +34,11 @@ class CalendarDateStatusCalculator
   end
 
   def light_dismissed?
-    request_window_deadline_past? && caretaker_dismissed_light?
+    caretaker_dismissed_light?
   end
 
   def light_confirmed?
-    request_window_deadline_past? && caretaker_confirmed_light?
+    caretaker_confirmed_light?
   end
 
   def not_requested_until_deadline?

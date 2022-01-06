@@ -37,9 +37,13 @@
                 .min-w-0.flex-1.flex.justify-between.space-x-4
                   %div
                     %p.text-sm.text-gray-300
-                      = t('.request_sent_to_caretaker_at')
-                      %time.caretaker-informed-at{ datetime: calendar_date.caretaker_informed_at }
-                        = l(calendar_date.caretaker_informed_at.in_time_zone('Europe/Zurich'), format: :day_time_only)
+                      - if calendar_date.caretaker_informed?
+                        = t('.request_sent_to_caretaker_at')
+                        %time.caretaker-informed-at{ datetime: calendar_date.caretaker_informed_at }
+                          = l(calendar_date.caretaker_informed_at.in_time_zone('Europe/Zurich'), format: :day_time_only)
+                      - else
+                        = t('.caretaker_was_not_informed')
+
 
         %li.decision
           .relative

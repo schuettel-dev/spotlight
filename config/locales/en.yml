@@ -43,6 +43,8 @@ en:
             base:
               request_window_closed: "Request window is closed."
   admin:
+    todays_calendar_date_component:
+      deadline_at: Deadline at %{deadline_at}
     configurations_show_component:
       admin_area: "Admin area"
     request_deadline_form_component:
@@ -70,6 +72,7 @@ en:
     awaiting_confirmation_or_dismissal: Awaiting confirmation / dismissal
     request_sent_to_caretaker_at: "Request sent to caretaker at"
     sending_request_to_caretaker_at: "Sending request to caretaker at"
+    caretaker_was_not_informed: "(Caretaker was not informed)"
   revoke_request_component:
     actions:
       revoke_request: "Revoke your light request."
@@ -111,6 +114,11 @@ en:
     errors:
       access_denied_for_non_admins: "Only admins can access this."
     models:
+      calendar_date:
+        actions:
+          confirm: Confirm
+          dismiss: Dismiss
+          revoke_decision: Revoke decision
       user:
         with_count:
           one: "%{count} user"

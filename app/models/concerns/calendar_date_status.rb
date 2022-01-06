@@ -9,6 +9,10 @@ module CalendarDateStatus
     @status = calculate_status
   end
 
+  def decided?
+    light_confirmed? || light_dismissed?
+  end
+
   # combined status
   def no_light_confirmed?
     not_active_today? || not_requested_until_deadline? || light_dismissed?

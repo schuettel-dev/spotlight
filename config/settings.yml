@@ -33,21 +33,21 @@ shared:
         css:
           border: 'border-purple-700'
           background: 'bg-purple-700'
-          text-primary: 'text-purple-500'
+          text-primary: 'text-purple-400'
           text-secondary: 'text-purple-300'
         icon: 'moon'
       not_requested_until_deadline:
         css:
           border: 'border-purple-700'
           background: 'bg-purple-700'
-          text-primary: 'text-purple-700'
+          text-primary: 'text-purple-400'
           text-secondary: 'text-purple-300'
         icon: 'moon'
       light_dismissed:
         css:
           border: 'border-purple-700'
           background: 'bg-purple-700'
-          text-primary: 'text-purple-700'
+          text-primary: 'text-purple-400'
           text-secondary: 'text-purple-300'
         icon: 'moon'
       light_confirmed:

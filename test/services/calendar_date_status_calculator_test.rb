@@ -62,6 +62,24 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'confirmed before deadline' do
+    travel_to zurich_time(2001, 1, 4, 12, 25, 0) do
+      calendar_date = calendar_dates(:thursday)
+      calendar_date.caretaker_confirmed_light!
+
+      assert_equal :light_confirmed, status_for(calendar_date)
+    end
+  end
+
+  test 'dismissed before deadline' do
+    travel_to zurich_time(2001, 1, 4, 12, 25, 0) do
+      calendar_date = calendar_dates(:thursday)
+      calendar_date.caretaker_dismissed_light!
+
+      assert_equal :light_dismissed, status_for(calendar_date)
+    end
+  end
+
   private
 
   def status_for(calendar_date)

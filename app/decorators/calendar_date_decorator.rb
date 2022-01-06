@@ -22,4 +22,8 @@ class CalendarDateDecorator < SimpleDelegator
   def display_light_requests_with_count
     I18n.t('shared.models.light_request.with_count', count: light_requests.size)
   end
+
+  def display_deadline_at
+    I18n.l(deadline_at.in_time_zone('Europe/Zurich'), format: :day_time_only)
+  end
 end
