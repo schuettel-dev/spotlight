@@ -1,4 +1,12 @@
 class CalendarDateDecorator < SimpleDelegator
+  def self.statuses_settings
+    Rails.application.config.settings.dig(:calendar_date, :statuses)
+  end
+
+  def statuses_settings
+    self.class.statuses_settings
+  end
+
   def display_date
     date.to_formatted_s(:long)
   end

@@ -12,4 +12,7 @@ class CalendarServiceTest < ActiveSupport::TestCase
       assert_equal '2021-01-01', CalendarService.today_in_time_zone.to_s
     end
   end
+
+  test '.now_in_time_zone'
+  test '.all_day_in_time_zone'
 end

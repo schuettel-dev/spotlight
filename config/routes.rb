@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :configuration, only: :show
-    resources :light_requests, only: %i[index update]
+    resources :calendar_dates, only: %i[index update]
     resources :request_deadlines, only: %i[index update]
     resources :users, only: %i[index update]
   end

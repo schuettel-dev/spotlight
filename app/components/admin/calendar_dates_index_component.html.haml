@@ -1,0 +1,8 @@
+.flex.flex-col.gap-y-8
+  .flex.flex-col
+    %h3.mb-2.text-gray-500= t('shared.today')
+    = render Admin::TodaysCalendarDateComponent.new(calendar_date: todays_calendar_date)
+
+  .flex.flex-col
+    %h3.mb-2.text-gray-500= t('shared.past')
+    = render Admin::PastCalendarDatesComponent.new(calendar_dates: past_calendar_dates)

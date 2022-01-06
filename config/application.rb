@@ -31,6 +31,9 @@ module Spotlight
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
     config.schachen_sunsets = config_for(:schachen_sunsets)
+    config.settings = config_for(:settings)
+    config.eager_load_paths << Rails.root.join("config/settings.yml")
   end
 end

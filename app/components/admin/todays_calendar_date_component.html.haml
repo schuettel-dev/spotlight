@@ -1,0 +1,10 @@
+.flex.flex-col.bg-gray-800.p-4.rounded
+  .flex
+    = calendar_date.display_light_requests_with_count
+  .flex.gap-x-4.w-full
+    - if !calendar_date.light_confirmed?
+      = link_to '#', class: 'w-full py-2 px-3 text-green-200 bg-green-700 hover:bg-green-600 transition rounded w-full flex justify-center' do
+        = t('.confirm')
+    - if !calendar_date.no_light_confirmed?
+      = link_to '#', class: 'w-full py-2 px-3 text-gray-300 bg-gray-900 hover:bg-purple-800 transition rounded w-full flex justify-center' do
+        = t('.dismiss')

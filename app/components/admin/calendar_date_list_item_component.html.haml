@@ -1,0 +1,15 @@
+%li.px-4.py-8.flex.flex-col.gap-y-8
+  .flex.gap-x-4.items-start
+    .shrink-0
+      .flex.flex-col.overflow-hidden.rounded
+        .bg-sky-500.text-center.py-1.px-4.text-sm.text-gray-900
+          = calendar_date.date.strftime('%b')
+        .bg-gray-700.py-2.flex.justify-center.font-mono.text-xl
+          = calendar_date.date.strftime('%d')
+    .grow.flex.flex-col.gap-y-2.mt-1
+      .shrink-0.flex.gap-x-2.items-center
+        .border-l-4.block.h-4.w-0{ class: calendar_date.statuses_settings.dig(calendar_date.status, :css, :border) }
+        .text-xs.tracking-wider.uppercase{ class: calendar_date.statuses_settings.dig(calendar_date.status, :css, :'text-primary') }
+          = calendar_date.display_status
+      .text-xl.text-gray-300.tracking-wide.pt-1
+        = calendar_date.display_light_requests_with_count
