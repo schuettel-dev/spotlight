@@ -9,5 +9,5 @@
     .flex-1.px-2.text-right.uppercase{ class: calendar_date.decorate.statuses_settings.dig(calendar_date.status, :css, :'text-primary') }
       = calendar_date.decorate.display_status
     .flex-1.px-2.text-xs.text-gray-400
-      = t('.deadline_at', deadline_at: calendar_date.decorate.display_deadline_at)
+      = t('.deadline_at', deadline_at: calendar_date.decorate.display_request_window_ends_at)
   = render Admin::CalendarDateDecisionFormComponent.new(current_user: current_user, calendar_date: calendar_date)

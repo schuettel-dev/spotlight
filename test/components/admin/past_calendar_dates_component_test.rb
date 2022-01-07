@@ -2,10 +2,10 @@ require 'test_helper'
 
 class Admin::PastCalendarDatesComponentTest < ViewComponent::TestCase
   test '#render, multiple' do
-    assert false
+    assert false, 'todo'
   end
 
   test '#render, none' do
-    assert false
+    assert false, 'todo'
   end
 end

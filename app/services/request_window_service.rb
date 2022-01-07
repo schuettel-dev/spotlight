@@ -15,7 +15,6 @@ class RequestWindowService
 
   private
 
-
   def fetch_and_transform_from_weekday_template(attribute)
     @calendar_date.date.to_datetime
                   .change(time_options_for(attribute))

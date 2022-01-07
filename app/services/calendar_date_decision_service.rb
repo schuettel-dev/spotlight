@@ -5,11 +5,12 @@ class CalendarDateDecisionService
   end
 
   def call
-    if @decision == :confirm
+    case @decision
+    when :confirm
       @calendar_date.caretaker_confirmed_light!
-    elsif @decision == :dismiss
+    when :dismiss
       @calendar_date.caretaker_dismissed_light!
-    elsif @decision == :reset
+    when :reset
       @calendar_date.reset_caretaker_decision!
     end
   end

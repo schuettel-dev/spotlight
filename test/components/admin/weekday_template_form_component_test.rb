@@ -17,14 +17,14 @@ class Admin::WeekdayTemplateFormComponentTest < ViewComponent::TestCase
     assert_not component.render?
   end
 
-  test '#selected_time' do
+  test '#selected_request_window_ends_at' do
     component = new_component(weekday_template: weekday_templates(:wednesday))
-    assert_equal '17:00', component.selected_time
+    assert_equal '17:00', component.selected_request_window_ends_at
   end
 
-  test '#time_select_options' do
+  test '#request_window_ends_at_select_options' do
     component = new_component(weekday_template: weekday_templates(:wednesday))
-    component.time_select_options.tap do |options|
+    component.request_window_ends_at_select_options.tap do |options|
       assert_equal 41, options.count
       assert_equal '10:00', options.first
       assert_equal '10:15', options.second

@@ -16,7 +16,7 @@ class RequestsSectionComponentTest < ViewComponent::TestCase
 
   test 'not render' do
     travel_to '2001-01-06 10:00:00 +01:00' do
-      calendar_date = CalendarDate.for_today
+      calendar_date = CalendarDate.find_or_create_for_today
       light_request = LightRequest.new
 
       component = new_component(calendar_date: calendar_date, user_light_request: light_request)

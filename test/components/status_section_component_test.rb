@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StatusSectionComponentTest < ViewComponent::TestCase
   test 'render general' do
-    render_inline(new_component(calendar_date: CalendarDate.for_today))
+    render_inline(new_component(calendar_date: CalendarDate.find_or_create_for_today))
     assert_selector 'h2', text: 'Status'
   end
 

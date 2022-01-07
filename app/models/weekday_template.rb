@@ -16,13 +16,14 @@ class WeekdayTemplate < ApplicationRecord
   end
 
   def set_request_window_ends_at(hh_mm_string) # rubocop:disable Naming/AccessorMethodName
+    return if hh_mm_string.blank?
+
     hour, minute = hh_mm_string.split(':').map(&:to_i)
     self.request_window_ends_at = request_window_ends_at.change(hour: hour, min: minute)
   end
 
   def update_request_window_ends_at(hh_mm_string)
-    set_request_window_ends_at(hh_mm_string)
-    save
+    set_request_window_ends_at(hh_mm_string) && save
   end
 
   def toggle_active!

@@ -9,6 +9,6 @@ class RequestsSectionComponent < ViewComponent::Base
   end
 
   def render?
-    calendar_date.request_window.active?
+    calendar_date.active?
   end
 end

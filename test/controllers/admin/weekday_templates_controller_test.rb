@@ -7,9 +7,12 @@ class Admin::WeekdayTemplatesControllerTest < ActionDispatch::IntegrationTest
     weekday_template = weekday_templates(:monday)
 
     assert_changes -> { weekday_template.active? }, to: false do
-      assert_changes -> { I18n.l(weekday_template.time, format: :day_time_only) }, to: '11:00' do
+      assert_changes(
+        -> { weekday_template.request_window_ends_at.to_s },
+        to: '2000-01-01 11:00:00 UTC'
+      ) do
         put admin_weekday_template_path(weekday_template),
-            params: { weekday_template: { active: '0', time: '11:00' } }
+            params: { weekday_template: { active: '0', request_window_ends_at: '11:00' } }
         weekday_template.reload
       end
     end

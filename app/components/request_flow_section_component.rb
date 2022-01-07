@@ -6,6 +6,6 @@ class RequestFlowSectionComponent < ViewComponent::Base
   end
 
   def render?
-    calendar_date.request_window.active? && !calendar_date.not_requested_until_deadline?
+    calendar_date.active? && !calendar_date.not_requested_until_deadline?
   end
 end

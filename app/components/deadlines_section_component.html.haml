@@ -9,7 +9,7 @@
             = t('date.day_names').at(weekday_template.weekday)
           .flex-shrink-0
             - if weekday_template.active?
-              = l(weekday_template.time, format: :day_time_only)
+              = l(weekday_template.request_window_ends_at, format: :day_time_only)
             - else
               = t('.not_available')
   .section--footer

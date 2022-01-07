@@ -6,6 +6,6 @@ class LightRequestsComponent < ViewComponent::Base
   end
 
   def render?
-    @calendar_date.request_window.active? && @calendar_date.request_window.time_window_start.past?
+    @calendar_date.active? && @calendar_date.request_window_starts_at.past?
   end
 end

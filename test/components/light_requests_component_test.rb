@@ -41,7 +41,7 @@ class LightRequestsComponentTest < ViewComponent::TestCase
 
   test 'not render, request window not active' do
     travel_to '2001-01-06 10:00:00 +01:00' do
-      component = new_component(calendar_date: CalendarDate.for_today)
+      component = new_component(calendar_date: CalendarDate.find_or_create_for_today)
       assert_not component.render?
     end
   end

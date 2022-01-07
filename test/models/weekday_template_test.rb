@@ -11,11 +11,19 @@ class WeekdayTemplateTest < ActiveSupport::TestCase
     assert_equal 0, WeekdayTemplate.for_date(a_sunday).weekday
   end
 
+  test '#set_request_window_ends_at with blank' do
+    assert false, 'todo'
+  end
+
   test '#update_request_window_ends_at' do
     weekday_template = weekday_templates(:thursday)
     assert_changes -> { to_day_time_only(weekday_template.request_window_ends_at) },
                    from: '16:30', to: '13:00' do
       weekday_template.update_request_window_ends_at('13:00')
     end
+  end
+
+  test '#toggle_active!' do
+    assert false, 'todo'
   end
 end

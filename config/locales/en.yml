@@ -11,9 +11,14 @@ en:
           light_dismissed: "Light requests have been dismissed"
           not_requested_until_deadline: "Light was not requested until deadline"
           not_active_today: "Not active today"
+        active: "Active"
+        request_window_starts_at: "Request window starts at"
+        request_window_ends_at: "Request window ends at"
+        sun_sets_at: "Sun sets at"
       weekday_template:
         active: "Weekday is activated"
-        time: "Time"
+        request_window_starts_at: "Request window starts at"
+        request_window_ends_at: "Request window ends at"
       user:
         locale: Language
         mobile: Mobile

@@ -18,7 +18,7 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
     travel_to '2001-01-04 16:35:00 +01:00' do
       calendar_date = calendar_dates(:thursday)
       assert_not calendar_date.caretaker_informed?
-      assert calendar_date.request_window.time_window_end.past?
+      assert calendar_date.request_window_ends_at.past?
 
       render_inline new_component(calendar_date: calendar_date)
 
@@ -32,7 +32,7 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
     travel_to '2001-01-04 16:35:00 +01:00' do
       calendar_date = calendar_dates(:thursday)
       calendar_date.caretaker_informed!
-      assert calendar_date.request_window.time_window_end.past?
+      assert calendar_date.request_window_ends_at.past?
 
       render_inline new_component(calendar_date: calendar_date)
 
@@ -72,7 +72,7 @@ class RequestFlowSectionComponentTest < ViewComponent::TestCase
 
   test 'not render, not active' do
     travel_to '2001-01-06 10:00:00 +01:00' do
-      calendar_date = CalendarDate.for_today
+      calendar_date = CalendarDate.find_or_create_for_today
 
       component = new_component(calendar_date: calendar_date)
       assert_not component.render?

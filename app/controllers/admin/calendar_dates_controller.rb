@@ -6,10 +6,8 @@ class Admin::CalendarDatesController < AdminController
       format.html do
         render Admin::CalendarDatesIndexComponent.new(
           current_user: current_user,
-          todays_calendar_date: CalendarDate.for_today,
-          past_calendar_dates: CalendarDate.before_today_in_zurich
-                                           .with_light_requests
-                                           .ordered_antichronologically
+          todays_calendar_date: find_todays_calendar_date,
+          past_calendar_dates: find_past_calendar_dates
         )
       end
     end
@@ -29,5 +27,15 @@ class Admin::CalendarDatesController < AdminController
 
   def set_calendar_date
     @calendar_date = CalendarDate.find(params[:id])
+  end
+
+  def find_todays_calendar_date
+    CalendarDate.find_or_create_for_today
+  end
+
+  def find_past_calendar_dates
+    CalendarDate.before_today_in_zurich
+                .with_light_requests
+                .ordered_antichronologically
   end
 end

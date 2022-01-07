@@ -41,7 +41,12 @@ class TodayComponentTest < ViewComponent::TestCase
 
   test 'render, not active' do
     travel_to '2001-01-06 10:0:00 +01:00' do
-      render_inline(new_component(calendar_date: CalendarDate.for_today, user_light_request: LightRequest.new))
+      render_inline(
+        new_component(
+          calendar_date: CalendarDate.find_or_create_for_today,
+          user_light_request: LightRequest.new
+        )
+      )
 
       assert_section 'date'
       assert_section 'status'

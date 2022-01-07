@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def light_request_for_today
-    @light_request_for_today ||= light_requests.find_or_initialize_by(calendar_date: CalendarDate.find_or_create_for_today)
+    @light_request_for_today ||= find_or_initialize_light_request_for_today
   end
 
   def admin?
@@ -37,6 +37,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def find_or_initialize_light_request_for_today
+    light_requests.find_or_initialize_by(calendar_date: CalendarDate.find_or_create_for_today)
+  end
 
   def verified_if_admin
     errors.add(:status, :admin_need_to_be_verified) if admin? && !verified?
