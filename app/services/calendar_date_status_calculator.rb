@@ -1,6 +1,7 @@
 class CalendarDateStatusCalculator
-  delegate :caretaker_informed?, :caretaker_confirmed_light?, :caretaker_dismissed_light?,
-           :request_window_open_now?, :date, to: :@calendar_date
+  delegate :active?, :date,
+           :caretaker_informed?, :caretaker_confirmed_light?, :caretaker_dismissed_light?,
+           :request_window_open_at?, :request_window_ends_at, to: :@calendar_date
 
   def initialize(calendar_date)
     @calendar_date = calendar_date
@@ -46,23 +47,19 @@ class CalendarDateStatusCalculator
   end
 
   def requesting_light?
-    request_window_deadline_past? && light_requests.any? && caretaker_not_informed?
+    request_window_ends_at_past? && light_requests.any? && caretaker_not_informed?
   end
 
   def light_requested?
-    request_window_deadline_past? && light_requests.any? && caretaker_informed?
-  end
-
-  def active?
-    request_window.active?
+    request_window_ends_at_past? && light_requests.any? && caretaker_informed?
   end
 
   def request_window_open_now?
-    active? && request_window.open?
+    active? && request_window_open_at?(Time.zone.now)
   end
 
-  def request_window_deadline_past?
-    active? && request_window.time_window_end.past?
+  def request_window_ends_at_past?
+    active? && request_window_ends_at.past?
   end
 
   def request_window_closed?

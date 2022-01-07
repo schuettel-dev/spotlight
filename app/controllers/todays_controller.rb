@@ -13,7 +13,7 @@ class TodaysController < ApplicationController
   private
 
   def find_calendar_date
-    CalendarDate.with_light_requests.for_today
+    CalendarDate.with_light_requests.find_or_create_for_today
   end
 
   def find_user_light_request

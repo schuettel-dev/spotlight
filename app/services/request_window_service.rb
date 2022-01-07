@@ -5,27 +5,16 @@ class RequestWindowService
     @calendar_date = calendar_date
   end
 
-  def time_window_start
-    time_window.first
+  def request_window_starts_at
+    @request_window_starts_at ||= fetch_and_transform_from_weekday_template(:request_window_starts_at)
   end
 
-  def time_window_end
-    time_window.last
+  def request_window_ends_at
+    @request_window_ends_at ||= fetch_and_transform_from_weekday_template(:request_window_ends_at)
   end
 
   private
 
-  def time_window
-    @time_window ||= (calculate_time_window_start..calculate_time_window_end)
-  end
-
-  def calculate_time_window_start
-    fetch_and_transform_from_weekday_template(:request_window_starts_at)
-  end
-
-  def calculate_time_window_end
-    fetch_and_transform_from_weekday_template(:request_window_ends_at)
-  end
 
   def fetch_and_transform_from_weekday_template(attribute)
     @calendar_date.date.to_datetime

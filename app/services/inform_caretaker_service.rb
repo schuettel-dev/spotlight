@@ -23,11 +23,11 @@ class InformCaretakerService
   end
 
   def calendar_date_active?
-    @calendar_date.request_window.active?
+    @calendar_date.active?
   end
 
   def request_time_window_end_past?
-    @calendar_date.request_window.time_window_end.past?
+    @calendar_date.request_window_ends_at.past?
   end
 
   def caretaker_not_informed?

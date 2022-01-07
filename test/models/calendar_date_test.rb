@@ -27,6 +27,16 @@ class CalendarDateTest < ActiveSupport::TestCase
     end
   end
 
+  test '.find_or_create_for_today, not active' do
+    travel_to '2001-01-07' do
+      CalendarDate.find_or_create_for_today.tap do |calendar_date|
+        assert_equal '2001-01-07', calendar_date.date.to_s
+        assert_not calendar_date.active?, 'Calendar date should not be active since it is a sunday'
+        assert calendar_date.persisted?
+      end
+    end
+  end
+
   test '#caretaker_informed? and #caretaker_informed!' do
     calendar_date = calendar_dates(:thursday)
 
@@ -49,5 +59,13 @@ class CalendarDateTest < ActiveSupport::TestCase
     assert_changes -> { calendar_date.caretaker_dismissed_light? }, to: true do
       calendar_date.caretaker_dismissed_light!
     end
+  end
+
+  test '#reset_caretaker_decision!' do
+    assert false, 'todo'
+  end
+
+  test '#request_window_open_at?' do
+    assert false, 'todo'
   end
 end

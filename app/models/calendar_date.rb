@@ -2,6 +2,7 @@ class CalendarDate < ApplicationRecord
   include CalendarDateStatus
   include Decorator
 
+  after_initialize :initialize_active, if: :new_record?
   after_initialize :initialize_request_window, if: :new_record?
   after_initialize :initialize_sun_sets_at, if: :new_record?
 
@@ -50,16 +51,20 @@ class CalendarDate < ApplicationRecord
     update(caretaker_confirmed_light_at: nil, caretaker_dismissed_light_at: nil)
   end
 
-  def request_window_open_now?
-    request_window.cover?(Time.zone.now)
+  def request_window_open_at?(time)
+    request_window.cover?(time)
   end
 
   private
 
+  def initialize_active
+    self.active = WeekdayTemplate.for_date(date).active
+  end
+
   def initialize_request_window
     request_window_service = RequestWindowService.new(self)
-    self.request_window_starts_at = request_window_service.time_window_start
-    self.request_window_ends_at = request_window_service.time_window_end
+    self.request_window_starts_at = request_window_service.request_window_starts_at
+    self.request_window_ends_at = request_window_service.request_window_ends_at
   end
 
   def initialize_sun_sets_at
