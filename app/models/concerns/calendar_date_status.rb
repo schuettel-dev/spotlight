@@ -23,8 +23,8 @@ module CalendarDateStatus
     status == :date_in_future
   end
 
-  def awaiting_light_requests?
-    status == :awaiting_light_requests
+  def request_window_open_now?
+    status == :request_window_open_now
   end
 
   def requesting_light?

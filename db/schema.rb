@@ -17,10 +17,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
 
   create_table "calendar_dates", force: :cascade do |t|
     t.date "date", null: false
-    t.datetime "deadline_at", precision: 6, null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "request_window_starts_at", precision: 6, null: false
+    t.datetime "request_window_ends_at", precision: 6, null: false
     t.datetime "caretaker_informed_at", precision: 6
     t.datetime "caretaker_confirmed_light_at", precision: 6
     t.datetime "caretaker_dismissed_light_at", precision: 6
+    t.datetime "sun_sets_at", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["date"], name: "index_calendar_dates_on_date", unique: true
@@ -43,15 +46,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
     t.index ["user_id"], name: "index_light_requests_on_user_id"
   end
 
-  create_table "weekday_templates", force: :cascade do |t|
-    t.integer "weekday", null: false
-    t.time "time", null: false
-    t.boolean "active", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["weekday"], name: "index_weekday_templates_on_weekday", unique: true
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", null: false
@@ -68,6 +62,16 @@ ActiveRecord::Schema.define(version: 2021_11_23_090248) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nickname"], name: "index_users_on_nickname", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "weekday_templates", force: :cascade do |t|
+    t.integer "weekday", null: false
+    t.boolean "active", default: true, null: false
+    t.time "request_window_starts_at", null: false
+    t.time "request_window_ends_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["weekday"], name: "index_weekday_templates_on_weekday", unique: true
   end
 
   add_foreign_key "light_requests", "calendar_dates"

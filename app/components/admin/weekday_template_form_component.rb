@@ -10,17 +10,17 @@ class Admin::WeekdayTemplateFormComponent < ViewComponent::Base
     weekday_template.active?
   end
 
-  def selected_time
-    weekday_template.decorate.display_time
+  def selected_request_window_ends_at
+    weekday_template.decorate.display_request_window_ends_at
   end
 
-  def time_select_options
-    @time_select_options ||= find_time_select_options
+  def request_window_ends_at_select_options
+    @request_window_ends_at_select_options ||= find_request_window_ends_at_select_options
   end
 
   private
 
-  def find_time_select_options(args = {})
+  def find_request_window_ends_at_select_options(args = {})
     current_time = args[:from] || DateTime.new(2000, 1, 1, 10, 0, 0, +0)
     end_time = args[:to] || DateTime.new(2000, 1, 1, 20, 0, 0, +0)
 

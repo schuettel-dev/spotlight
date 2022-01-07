@@ -1,7 +1,7 @@
 .mb-4{ id: 'light_requests'}
   = render LightRequestsIconsComponent.new(light_requests: calendar_date.light_requests)
 
-  - if calendar_date.awaiting_light_requests?
+  - if calendar_date.request_window_open_now?
     .text-gray-500.text-sm.text-center
       = t('.calendar_date_light_requests_count_present_tense_html', count: calendar_date.light_requests.count)
   - else

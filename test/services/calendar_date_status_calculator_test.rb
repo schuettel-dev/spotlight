@@ -24,7 +24,7 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
     calendar_date = calendar_dates(:thursday)
 
     travel_to zurich_time(2001, 1, 4, 16, 25, 0) do
-      assert_equal :awaiting_light_requests, status_for(calendar_date)
+      assert_equal :request_window_open_now, status_for(calendar_date)
     end
 
     travel_to zurich_time(2001, 1, 4, 16, 35, 0) do
@@ -54,7 +54,7 @@ class CalendarDateStatusCalculatorTest < ActiveSupport::TestCase
     calendar_date.light_requests.delete_all
 
     travel_to zurich_time(2001, 1, 4, 16, 25, 0) do
-      assert_equal :awaiting_light_requests, status_for(calendar_date)
+      assert_equal :request_window_open_now, status_for(calendar_date)
     end
 
     travel_to zurich_time(2001, 1, 4, 16, 35, 0) do

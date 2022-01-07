@@ -2,26 +2,20 @@ require 'test_helper'
 
 class WeekdayTemplateTest < ActiveSupport::TestCase
   test '.for_date' do
-    assert_equal '15:00', to_day_time_only(WeekdayTemplate.for_date(a_monday).time)
-    assert_equal '16:00', to_day_time_only(WeekdayTemplate.for_date(a_tuesday).time)
-    assert_equal '17:00', to_day_time_only(WeekdayTemplate.for_date(a_wednesday).time)
-    assert_equal '16:30', to_day_time_only(WeekdayTemplate.for_date(a_thursday).time)
-    assert_equal '14:30', to_day_time_only(WeekdayTemplate.for_date(a_friday).time)
-    assert_equal '10:00', to_day_time_only(WeekdayTemplate.for_date(a_saturday).time)
-    assert_equal '00:00', to_day_time_only(WeekdayTemplate.for_date(a_sunday).time)
+    assert_equal 1, WeekdayTemplate.for_date(a_monday).weekday
+    assert_equal 2, WeekdayTemplate.for_date(a_tuesday).weekday
+    assert_equal 3, WeekdayTemplate.for_date(a_wednesday).weekday
+    assert_equal 4, WeekdayTemplate.for_date(a_thursday).weekday
+    assert_equal 5, WeekdayTemplate.for_date(a_friday).weekday
+    assert_equal 6, WeekdayTemplate.for_date(a_saturday).weekday
+    assert_equal 0, WeekdayTemplate.for_date(a_sunday).weekday
   end
 
-  test '.for_today' do
-    travel_to a_wednesday do
-      assert_equal '17:00', to_day_time_only(WeekdayTemplate.for_today.time)
-    end
-  end
-
-  test '#update_time' do
-    thursday_deadline = weekday_templates(:thursday)
-    assert_changes -> { to_day_time_only(thursday_deadline.time) },
+  test '#update_request_window_ends_at' do
+    weekday_template = weekday_templates(:thursday)
+    assert_changes -> { to_day_time_only(weekday_template.request_window_ends_at) },
                    from: '16:30', to: '13:00' do
-      thursday_deadline.update_time('13:00')
+      weekday_template.update_request_window_ends_at('13:00')
     end
   end
 end

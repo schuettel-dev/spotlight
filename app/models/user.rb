@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def light_request_for_today
-    @light_request_for_today ||= light_requests.find_or_initialize_by(calendar_date: CalendarDate.for_today)
+    @light_request_for_today ||= light_requests.find_or_initialize_by(calendar_date: CalendarDate.find_or_create_for_today)
   end
 
   def admin?

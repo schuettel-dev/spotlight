@@ -13,7 +13,7 @@ class StatusSectionComponentTest < ViewComponent::TestCase
     end
   end
 
-  test 'render awaiting_light_requests?' do
+  test 'render request_window_open_now?' do
     travel_to '2001-01-04 10:00:00 +01:00' do
       render_inline(new_component(calendar_date: calendar_dates(:thursday)))
       assert_text 'Collecting requests'

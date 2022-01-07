@@ -6,8 +6,8 @@ class CalendarDate::StatusBadgeComponentTest < ViewComponent::TestCase
     assert_selector 'svg.heroicon-clock'
   end
 
-  test '#render, status: awaiting_light_requests' do
-    render_inline(new_component(status: 'awaiting_light_requests'))
+  test '#render, status: request_window_open_now' do
+    render_inline(new_component(status: 'request_window_open_now'))
     assert_selector 'svg.heroicon-collection'
   end
 

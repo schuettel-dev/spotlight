@@ -1,6 +1,6 @@
 class CalendarDateStatusCalculator
   delegate :caretaker_informed?, :caretaker_confirmed_light?, :caretaker_dismissed_light?,
-           :request_window, :date, to: :@calendar_date
+           :request_window_open_now?, :date, to: :@calendar_date
 
   def initialize(calendar_date)
     @calendar_date = calendar_date
@@ -14,14 +14,14 @@ class CalendarDateStatusCalculator
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def find_status
-    return :date_in_future if date_in_future?
     return :not_active_today if not_active_today?
     return :light_dismissed if light_dismissed?
     return :light_confirmed if light_confirmed?
+    return :date_in_future if date_in_future?
     return :not_requested_until_deadline if not_requested_until_deadline?
     return :light_requested if light_requested?
     return :requesting_light if requesting_light?
-    return :awaiting_light_requests if awaiting_light_requests?
+    return :request_window_open_now if request_window_open_now?
   end
   # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
@@ -53,15 +53,11 @@ class CalendarDateStatusCalculator
     request_window_deadline_past? && light_requests.any? && caretaker_informed?
   end
 
-  def awaiting_light_requests?
-    request_window.open?
-  end
-
   def active?
     request_window.active?
   end
 
-  def request_window_open?
+  def request_window_open_now?
     active? && request_window.open?
   end
 
@@ -70,7 +66,7 @@ class CalendarDateStatusCalculator
   end
 
   def request_window_closed?
-    !request_window_open?
+    !request_window_open_now?
   end
 
   def caretaker_not_informed?

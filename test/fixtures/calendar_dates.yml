@@ -1,35 +1,42 @@
-monday:
-  date: '2001-01-01'
+DEFAULTS: &DEFAULTS
   active: true
-  request_window_starts_at: '2000-12-31 23:00:00 +0000'
-  request_window_ends_at: '2001-01-01 14:00:00 +0000'
-  caretaker_informed_at: '2001-01-01 15:00:00 +0000'
-  caretaker_confirmed_light_at: '2001-01-01 15:15:00 +0000'
+
+monday:
+  <<: *DEFAULTS
+  date: '2001-01-01'
+  request_window_starts_at: '2000-12-31 23:00:00 UTC'
+  request_window_ends_at: '2001-01-01 14:00:00 UTC'
+  caretaker_informed_at: '2001-01-01 15:00:00 UTC'
+  caretaker_confirmed_light_at: '2001-01-01 15:15:00 UTC'
   caretaker_dismissed_light_at:
+  sun_sets_at: '2001-01-01 15:47:39 UTC'
 
 tuesday:
+  <<: *DEFAULTS
   date: '2001-01-02'
-  active: true
-  request_window_ends_at: '2001-01-01 23:00:00 +0000'
-  request_window_ends_at: '2001-01-02 15:00:00 +0000'
-  caretaker_informed_at: '2001-01-02 16:00:00 +0000'
-  caretaker_confirmed_light_at: '2001-01-02 16:15:00 +0000'
+  request_window_starts_at: '2001-01-01 23:00:00 UTC'
+  request_window_ends_at: '2001-01-02 15:00:00 UTC'
+  caretaker_informed_at: '2001-01-02 16:00:00 UTC'
+  caretaker_confirmed_light_at: '2001-01-02 16:15:00 UTC'
   caretaker_dismissed_light_at:
+  sun_sets_at: '2001-01-02 15:48:37 UTC'
 
 wednesday:
+  <<: *DEFAULTS
   date: '2001-01-03'
-  active: true
-  request_window_ends_at: '2001-01-02 23:00:00 +0000'
-  request_window_ends_at: '2001-01-03 16:00:00 +0000'
-  caretaker_informed_at: '2001-01-03 16:00:00 +0000'
+  request_window_starts_at: '2001-01-02 23:00:00 UTC'
+  request_window_ends_at: '2001-01-03 16:00:00 UTC'
+  caretaker_informed_at: '2001-01-03 16:00:00 UTC'
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
+  sun_sets_at: '2001-01-03 15:49:37 UTC'
 
 thursday:
+  <<: *DEFAULTS
   date: '2001-01-04'
-  active: true
-  request_window_ends_at: '2001-01-03 23:00:00 +0000'
-  request_window_ends_at: '2001-01-04 15:30:00 +0000'
+  request_window_starts_at: '2001-01-03 23:00:00 UTC'
+  request_window_ends_at: '2001-01-04 15:30:00 UTC'
   caretaker_informed_at:
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
+  sun_sets_at: '2001-01-04 15:50:39 UTC'

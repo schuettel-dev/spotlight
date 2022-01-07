@@ -11,7 +11,7 @@ class RequestButtonComponent < ViewComponent::Base
   end
 
   def render?
-    calendar_date.awaiting_light_requests? && new_light_request?
+    calendar_date.request_window_open_now? && new_light_request?
   end
 
   def new_light_request?

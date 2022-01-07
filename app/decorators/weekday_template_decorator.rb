@@ -3,7 +3,7 @@ class WeekdayTemplateDecorator < SimpleDelegator
     I18n.t('date.day_names')[weekday]
   end
 
-  def display_time
-    I18n.l(time, format: :day_time_only)
+  def display_request_window_ends_at
+    I18n.l(request_window_ends_at, format: :day_time_only)
   end
 end

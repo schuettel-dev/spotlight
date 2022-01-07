@@ -4,7 +4,7 @@ en:
       calendar_date:
         statuses:
           date_in_future: "Date in future"
-          awaiting_light_requests: "Collecting requests"
+          request_window_open_now: "Collecting requests"
           requesting_light: "Requesting light"
           light_requested: "Request sent to caretaker"
           light_confirmed: "Light confirmed"
@@ -38,6 +38,8 @@ en:
         other: "Users"
     errors:
       models:
+        calendar_date:
+          cannot_be_outside_date: 'cannot be outside date'
         light_request:
           attributes:
             base:

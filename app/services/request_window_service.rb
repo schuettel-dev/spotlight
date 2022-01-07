@@ -5,18 +5,6 @@ class RequestWindowService
     @calendar_date = calendar_date
   end
 
-  def open?
-    active? && in_time_window?(Time.zone.now)
-  end
-
-  def in_time_window?(time)
-    time_window.cover?(time)
-  end
-
-  def time_window
-    @time_window ||= (calculate_time_window_start..calculate_time_window_end)
-  end
-
   def time_window_start
     time_window.first
   end
@@ -27,25 +15,33 @@ class RequestWindowService
 
   private
 
+  def time_window
+    @time_window ||= (calculate_time_window_start..calculate_time_window_end)
+  end
+
   def calculate_time_window_start
-    @calendar_date.date.asctime.in_time_zone('Europe/Zurich').at_beginning_of_day
+    fetch_and_transform_from_weekday_template(:request_window_starts_at)
   end
 
   def calculate_time_window_end
+    fetch_and_transform_from_weekday_template(:request_window_ends_at)
+  end
+
+  def fetch_and_transform_from_weekday_template(attribute)
     @calendar_date.date.to_datetime
-                  .change(weekday_template_time_params)
+                  .change(time_options_for(attribute))
                   .asctime
                   .in_time_zone('Europe/Zurich')
   end
 
-  def weekday_template
-    @weekday_template ||= WeekdayTemplate.for_date(@calendar_date.date)
+  def time_options_for(attribute)
+    {
+      hour: weekday_template[attribute].hour,
+      min: weekday_template[attribute].min
+    }
   end
 
-  def weekday_template_time_params
-    {
-      hour: weekday_template.time.hour,
-      min: weekday_template.time.min
-    }
+  def weekday_template
+    @weekday_template ||= WeekdayTemplate.for_date(@calendar_date.date)
   end
 end

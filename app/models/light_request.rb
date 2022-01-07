@@ -2,8 +2,8 @@ class LightRequest < ApplicationRecord
   belongs_to :calendar_date
   belongs_to :user
 
-  validate :request_window_open?
-  before_destroy :request_window_open?
+  validate :request_window_open_now?
+  before_destroy :request_window_open_now?
 
   private
 
@@ -15,8 +15,8 @@ class LightRequest < ApplicationRecord
     )
   end
 
-  def request_window_open?
-    return if calendar_date.request_window.open?
+  def request_window_open_now?
+    return if calendar_date.request_window_open_now?
 
     errors.add(:base, :request_window_closed) && throw(:abort)
   end

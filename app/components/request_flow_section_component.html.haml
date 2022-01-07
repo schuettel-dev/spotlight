@@ -19,7 +19,7 @@
           .relative.pb-8
             %span.absolute.top-4.left-4.-ml-px.h-full.bg-gray-400{"aria-hidden" => "true", class: "w-0.5"}
             .relative.flex.space-x-4.items-center
-              - if calendar_date.awaiting_light_requests? || calendar_date.requesting_light?
+              - if calendar_date.request_window_open_now? || calendar_date.requesting_light?
                 %div
                   %span.h-8.w-8.rounded-full.bg-gray-600.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
                     = render HeroiconComponent.new(:'phone-outgoing')
@@ -70,7 +70,7 @@
                     = render HeroiconComponent.new(:'dots-horizontal')
                 .min-w-0.flex-1.flex.justify-between.space-x-4
                   %p.text-sm.text-gray-500
-                    - if calendar_date.awaiting_light_requests? || calendar_date.requesting_light?
+                    - if calendar_date.request_window_open_now? || calendar_date.requesting_light?
                       = t('.confirmation_or_dismissal')
                     - else
                       = t('.awaiting_confirmation_or_dismissal')

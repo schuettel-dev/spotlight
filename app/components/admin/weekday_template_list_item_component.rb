@@ -3,12 +3,10 @@ class Admin::WeekdayTemplateListItemComponent < ViewComponent::Base
 
   attr_reader :weekday_template
 
-  delegate :display_weekday, :display_time, to: :weekday_template
-
   with_collection_parameter :weekday_template
 
   def initialize(weekday_template:)
-    @weekday_template = weekday_template.decorate
+    @weekday_template = weekday_template
     super()
   end
 

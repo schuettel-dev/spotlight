@@ -1,12 +1,28 @@
 require 'test_helper'
 
 class CalendarDateTest < ActiveSupport::TestCase
-  test '.for_today' do
+  test '.find_or_create_for_today' do
     travel_to '2021-01-01' do
-      CalendarDate.for_today.tap do |calendar_date|
+      CalendarDate.find_or_create_for_today.tap do |calendar_date|
         assert_equal '2021-01-01', calendar_date.date.to_s
+        assert calendar_date.active?
+        assert_equal '2020-12-31 23:00:00 UTC', calendar_date.request_window_starts_at.to_s
+        assert_equal '2021-01-01 13:30:00 UTC', calendar_date.request_window_ends_at.to_s
+        assert_equal '2021-01-01 15:47:39 UTC', calendar_date.sun_sets_at.to_s
         assert calendar_date.persisted?
-        assert_equal '2001-01-05 14:00:00 UTC', calendar_date.deadline_at.to_s
+      end
+    end
+  end
+
+  test '.find_or_create_for_today, daylight saving' do
+    travel_to '2021-06-14' do
+      CalendarDate.find_or_create_for_today.tap do |calendar_date|
+        assert_equal '2021-06-14', calendar_date.date.to_s
+        assert calendar_date.active?
+        assert_equal '2021-06-13 22:00:00 UTC', calendar_date.request_window_starts_at.to_s
+        assert_equal '2021-06-14 13:00:00 UTC', calendar_date.request_window_ends_at.to_s
+        assert_equal '2021-06-14 19:25:40 UTC', calendar_date.sun_sets_at.to_s
+        assert calendar_date.persisted?
       end
     end
   end

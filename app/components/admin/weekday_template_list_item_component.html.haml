@@ -9,9 +9,9 @@
               = f.check_box :active, 'data-action': 'admin--request-deadline-list-item#submitForm'
           %div.col-span-10.flex.text-xl{ class: css_classes }
             .grow
-              = display_weekday
+              = weekday_template.decorate.display_weekday
             .shrink-0
-              = display_time
+              = weekday_template.decorate.display_request_window_ends_at
 
           .col-span-1.flex.items-center.justify-center
             - if render_form?

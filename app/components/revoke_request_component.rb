@@ -7,6 +7,6 @@ class RevokeRequestComponent < ViewComponent::Base
   end
 
   def render?
-    calendar_date.awaiting_light_requests? && user_light_request.persisted?
+    calendar_date.request_window_open_now? && user_light_request.persisted?
   end
 end
