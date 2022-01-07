@@ -3,13 +3,13 @@
     %h2= t('sections.deadlines')
   .section--body
     .flex.flex-col.divide-y.divide-gray-700
-      - RequestDeadline.ordered.each do |request_deadline|
-        .flex.py-1.request-deadline-row{ class: request_deadline_classes(request_deadline) }
+      - WeekdayTemplate.ordered.each do |weekday_template|
+        .flex.py-1.request-deadline-row{ class: weekday_template_classes(weekday_template) }
           .flex-grow
-            = t('date.day_names').at(request_deadline.weekday)
+            = t('date.day_names').at(weekday_template.weekday)
           .flex-shrink-0
-            - if request_deadline.active?
-              = l(request_deadline.time, format: :day_time_only)
+            - if weekday_template.active?
+              = l(weekday_template.time, format: :day_time_only)
             - else
               = t('.not_available')
   .section--footer

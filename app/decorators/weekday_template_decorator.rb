@@ -1,4 +1,4 @@
-class RequestDeadlineDecorator < SimpleDelegator
+class WeekdayTemplateDecorator < SimpleDelegator
   def display_weekday
     I18n.t('date.day_names')[weekday]
   end

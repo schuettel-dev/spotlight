@@ -1,23 +1,35 @@
 monday:
   date: '2001-01-01'
-  caretaker_informed_at: '2001-01-01 15:00:00'
-  caretaker_confirmed_light_at: '2001-01-01 15:15:00'
+  active: true
+  request_window_starts_at: '2000-12-31 23:00:00 +0000'
+  request_window_ends_at: '2001-01-01 14:00:00 +0000'
+  caretaker_informed_at: '2001-01-01 15:00:00 +0000'
+  caretaker_confirmed_light_at: '2001-01-01 15:15:00 +0000'
   caretaker_dismissed_light_at:
 
 tuesday:
   date: '2001-01-02'
-  caretaker_informed_at: '2001-01-02 16:00:00'
-  caretaker_confirmed_light_at: '2001-01-02 16:15:00'
+  active: true
+  request_window_ends_at: '2001-01-01 23:00:00 +0000'
+  request_window_ends_at: '2001-01-02 15:00:00 +0000'
+  caretaker_informed_at: '2001-01-02 16:00:00 +0000'
+  caretaker_confirmed_light_at: '2001-01-02 16:15:00 +0000'
   caretaker_dismissed_light_at:
 
 wednesday:
   date: '2001-01-03'
-  caretaker_informed_at: '2001-01-03 16:00:00'
+  active: true
+  request_window_ends_at: '2001-01-02 23:00:00 +0000'
+  request_window_ends_at: '2001-01-03 16:00:00 +0000'
+  caretaker_informed_at: '2001-01-03 16:00:00 +0000'
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
 
 thursday:
   date: '2001-01-04'
+  active: true
+  request_window_ends_at: '2001-01-03 23:00:00 +0000'
+  request_window_ends_at: '2001-01-04 15:30:00 +0000'
   caretaker_informed_at:
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:

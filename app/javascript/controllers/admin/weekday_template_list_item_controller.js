@@ -7,7 +7,7 @@ export default class extends Controller {
   static values = { requestDeadlineId: Number };
 
   connect() {
-    this.openedFormsList = listsStorage('openedRequestDeadlineForms');
+    this.openedFormsList = listsStorage('openedWeekdayTemplateForms');
     this.render();
   }
 
@@ -27,7 +27,7 @@ export default class extends Controller {
     event.target.closest('form').requestSubmit();
   }
 
-  toggleRequestDeadlineForm() {
+  toggleWeekdayTemplateForm() {
     this.openedFormsList.toggle(this.requestDeadlineIdValue)
     this.render();
   }

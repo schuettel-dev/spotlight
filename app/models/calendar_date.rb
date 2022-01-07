@@ -2,6 +2,8 @@ class CalendarDate < ApplicationRecord
   include CalendarDateStatus
   include Decorator
 
+  after_initialize :calculate_deadline_at, if: :new_record?
+
   validates :date, presence: true
   validates :date, uniqueness: true
 
@@ -13,15 +15,11 @@ class CalendarDate < ApplicationRecord
   scope :ordered_antichronologically, -> { order(date: :desc) }
 
   def self.for_today
-    find_or_initialize_by(date: CalendarService.today_in_zurich)
+    find_or_create_by(date: CalendarService.today_in_zurich)
   end
 
   def request_window
     @request_window ||= RequestWindowService.new(self)
-  end
-
-  def deadline_at
-    request_window.time_window_end
   end
 
   def sun_sets_at
@@ -54,5 +52,11 @@ class CalendarDate < ApplicationRecord
 
   def reset_caretaker_decision!
     update(caretaker_confirmed_light_at: nil, caretaker_dismissed_light_at: nil)
+  end
+
+  private
+
+  def calculate_deadline_at
+    self.deadline_at = request_window.time_window_end
   end
 end

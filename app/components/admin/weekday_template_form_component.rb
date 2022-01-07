@@ -1,17 +1,17 @@
-class Admin::RequestDeadlineFormComponent < ViewComponent::Base
-  attr_reader :request_deadline
+class Admin::WeekdayTemplateFormComponent < ViewComponent::Base
+  attr_reader :weekday_template
 
-  def initialize(request_deadline:)
-    @request_deadline = request_deadline
+  def initialize(weekday_template:)
+    @weekday_template = weekday_template
     super()
   end
 
   def render?
-    request_deadline.active?
+    weekday_template.active?
   end
 
   def selected_time
-    request_deadline.decorate.display_time
+    weekday_template.decorate.display_time
   end
 
   def time_select_options

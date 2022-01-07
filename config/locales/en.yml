@@ -11,7 +11,7 @@ en:
           light_dismissed: "Light requests have been dismissed"
           not_requested_until_deadline: "Light was not requested until deadline"
           not_active_today: "Not active today"
-      request_deadline:
+      weekday_template:
         active: "Weekday is activated"
         time: "Time"
       user:
@@ -30,7 +30,7 @@ en:
       light_request:
         one: "Light request"
         other: "Light requests"
-      request_deadline:
+      weekday_template:
         one: "Request deadline"
         other: "Request deadlines"
       user:
@@ -47,7 +47,7 @@ en:
       deadline_at: Deadline at %{deadline_at}
     configurations_show_component:
       admin_area: "Admin area"
-    request_deadline_form_component:
+    weekday_template_form_component:
       actions:
         update_time: "Update time"
     user_form_component:

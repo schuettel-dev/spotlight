@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import Admin__RequestDeadlineListItemController from "./admin/request_deadline_list_item_controller.js"
-application.register("admin--request-deadline-list-item", Admin__RequestDeadlineListItemController)
+import Admin__WeekdayTemplateListItemController from "./admin/weekday_template_list_item_controller.js"
+application.register("admin--request-deadline-list-item", Admin__WeekdayTemplateListItemController)
 
 import Admin__UserInfoController from "./admin/user_info_controller.js"
 application.register("admin--user-info", Admin__UserInfoController)

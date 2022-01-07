@@ -1,9 +1,9 @@
-class RequestDeadline < ApplicationRecord
+class WeekdayTemplate < ApplicationRecord
   include Decorator
 
   validates :time, presence: true
 
-  after_save :broadcast_request_deadline
+  after_save :broadcast_weekday_template
 
   scope :ordered, -> { order(Arel.sql('(weekday + 6) % 7')) }
 
@@ -31,10 +31,10 @@ class RequestDeadline < ApplicationRecord
 
   private
 
-  def broadcast_request_deadline
-    component = Admin::RequestDeadlineListItemComponent.new(request_deadline: self)
+  def broadcast_weekday_template
+    component = Admin::WeekdayTemplateListItemComponent.new(weekday_template: self)
     broadcast_replace_to(
-      'admin_request_deadlines',
+      'admin_weekday_templates',
       target: component.to_dom_id,
       html: ApplicationController.render(component, layout: false)
     )

@@ -5,7 +5,7 @@
     = t('shared.actions.back')
 
 %h2.text-sky-300.uppercase.text-sm.mb-2
-  = RequestDeadline.model_name.human(count: 2)
+  = WeekdayTemplate.model_name.human(count: 2)
 
-= turbo_stream_from('admin_request_deadlines')
-= render Admin::RequestDeadlineListComponent.new(request_deadlines: request_deadlines)
+= turbo_stream_from('admin_weekday_templates')
+= render Admin::WeekdayTemplateListComponent.new(weekday_templates: weekday_templates)

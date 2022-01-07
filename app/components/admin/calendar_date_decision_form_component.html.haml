@@ -1,0 +1,15 @@
+.flex
+  .w-full.flex.gap-x-4
+    - if calendar_date.decided?
+      = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
+        = f.hidden_field :decision, value: :reset
+        = f.submit t('shared.models.calendar_date.actions.revoke_decision'), class: 'w-full py-2 px-3 text-yellow-100 bg-yellow-800 hover:bg-yellow-700 transition rounded w-full flex justify-center cursor-pointer'
+
+    - else
+      = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
+        = f.hidden_field :decision, value: :confirm
+        = f.submit t('shared.models.calendar_date.actions.confirm'), class: 'w-full py-2 px-3 text-green-200 bg-green-700 hover:bg-green-600 transition rounded w-full flex justify-center cursor-pointer'
+
+      = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
+        = f.hidden_field :decision, value: :dismiss
+        = f.submit t('shared.models.calendar_date.actions.dismiss'), class: 'w-full py-2 px-3 text-gray-300 bg-gray-900 hover:bg-purple-800 transition rounded w-full flex justify-center cursor-pointer'

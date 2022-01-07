@@ -5,7 +5,8 @@ class CalendarDateTest < ActiveSupport::TestCase
     travel_to '2021-01-01' do
       CalendarDate.for_today.tap do |calendar_date|
         assert_equal '2021-01-01', calendar_date.date.to_s
-        assert_not calendar_date.persisted?
+        assert calendar_date.persisted?
+        assert_equal '2001-01-05 14:00:00 UTC', calendar_date.deadline_at.to_s
       end
     end
   end

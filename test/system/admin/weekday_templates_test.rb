@@ -1,6 +1,6 @@
 require 'application_system_test_case'
 
-class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
+class Admin::WeekdayTemplatesTest < ApplicationSystemTestCase
   test 'show request deadlines' do
     sign_in_as :marge
     navigate_to_admin_request_deadliens
@@ -8,13 +8,13 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     assert_link 'Back', href: '/admin/configuration'
 
     assert_selector 'h2', text: 'Request deadlines'
-    assert_request_deadline 'Monday', true, '15:00'
-    assert_request_deadline 'Tuesday', true, '16:00'
-    assert_request_deadline 'Wednesday', true, '17:00'
-    assert_request_deadline 'Thursday', true, '16:30'
-    assert_request_deadline 'Friday', true, '14:30'
-    assert_request_deadline 'Saturday', false, '10:00'
-    assert_request_deadline 'Sunday', false, '00:00'
+    assert_weekday_template 'Monday', true, '15:00'
+    assert_weekday_template 'Tuesday', true, '16:00'
+    assert_weekday_template 'Wednesday', true, '17:00'
+    assert_weekday_template 'Thursday', true, '16:30'
+    assert_weekday_template 'Friday', true, '14:30'
+    assert_weekday_template 'Saturday', false, '10:00'
+    assert_weekday_template 'Sunday', false, '00:00'
   end
 
   test 'changes request deadline for wednesday with JS' do
@@ -22,7 +22,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
       sign_in_as :marge
       navigate_to_admin_request_deadliens
 
-      element = find_request_deadline_for('Wednesday')
+      element = find_weekday_template_for('Wednesday')
       assert element.has_text?('17:00')
 
       within(element) do
@@ -31,7 +31,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
         click_on 'Update time'
       end
 
-      assert find_request_deadline_for('Wednesday').has_text?('17:45')
+      assert find_weekday_template_for('Wednesday').has_text?('17:45')
     end
   end
 
@@ -40,13 +40,13 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
       sign_in_as :marge
       navigate_to_admin_request_deadliens
 
-      element = find_request_deadline_for('Wednesday')
+      element = find_weekday_template_for('Wednesday')
 
       within(element) do
         uncheck 'Weekday is activated'
       end
 
-      assert_request_deadline 'Wednesday', false, '17:00'
+      assert_weekday_template 'Wednesday', false, '17:00'
     end
   end
 
@@ -55,7 +55,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
       sign_in_as :marge
       navigate_to_admin_request_deadliens
 
-      within find_request_deadline_for('Tuesday') do
+      within find_weekday_template_for('Tuesday') do
         assert_form_closed
         open_form
         assert_form_opened
@@ -64,7 +64,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
       click_on 'Back'
       click_on 'Request deadlines'
 
-      within find_request_deadline_for('Tuesday') do
+      within find_weekday_template_for('Tuesday') do
         assert_form_opened
       end
     end
@@ -77,8 +77,8 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     click_on 'Request deadlines'
   end
 
-  def assert_request_deadline(weekday, active, time)
-    find_request_deadline_for(weekday).tap do |element|
+  def assert_weekday_template(weekday, active, time)
+    find_weekday_template_for(weekday).tap do |element|
       assert element.has_text?(weekday), "Should have text '#{weekday}'"
 
       if active
@@ -91,7 +91,7 @@ class Admin::RequestDeadlinesTest < ApplicationSystemTestCase
     end
   end
 
-  def find_request_deadline_for(weekday)
+  def find_weekday_template_for(weekday)
     find('li', text: weekday)
   end
 

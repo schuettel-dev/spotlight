@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Admin::RequestDeadlineFormComponentTest < ViewComponent::TestCase
+class Admin::WeekdayTemplateFormComponentTest < ViewComponent::TestCase
   test 'render' do
-    component = new_component(request_deadline: request_deadlines(:wednesday))
+    component = new_component(weekday_template: weekday_templates(:wednesday))
     render_inline component
 
     assert_select 'Time', selected: '17:00'
@@ -10,20 +10,20 @@ class Admin::RequestDeadlineFormComponentTest < ViewComponent::TestCase
   end
 
   test 'not render' do
-    component = new_component(request_deadline: request_deadlines(:wednesday))
+    component = new_component(weekday_template: weekday_templates(:wednesday))
     assert component.render?
 
-    component = new_component(request_deadline: request_deadlines(:saturday))
+    component = new_component(weekday_template: weekday_templates(:saturday))
     assert_not component.render?
   end
 
   test '#selected_time' do
-    component = new_component(request_deadline: request_deadlines(:wednesday))
+    component = new_component(weekday_template: weekday_templates(:wednesday))
     assert_equal '17:00', component.selected_time
   end
 
   test '#time_select_options' do
-    component = new_component(request_deadline: request_deadlines(:wednesday))
+    component = new_component(weekday_template: weekday_templates(:wednesday))
     component.time_select_options.tap do |options|
       assert_equal 41, options.count
       assert_equal '10:00', options.first

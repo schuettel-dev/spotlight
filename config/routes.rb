@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :configuration, only: :show
     resources :calendar_dates, only: %i[index update]
-    resources :request_deadlines, only: %i[index update]
+    resources :weekday_templates, only: %i[index update]
     resources :users, only: %i[index update]
   end
 end

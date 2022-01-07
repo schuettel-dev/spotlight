@@ -1,4 +1,6 @@
 class RequestWindowService
+  delegate :active?, to: :weekday_template
+
   def initialize(calendar_date)
     @calendar_date = calendar_date
   end
@@ -6,8 +8,6 @@ class RequestWindowService
   def open?
     active? && in_time_window?(Time.zone.now)
   end
-
-  delegate :active?, to: :request_deadline
 
   def in_time_window?(time)
     time_window.cover?(time)
@@ -33,19 +33,19 @@ class RequestWindowService
 
   def calculate_time_window_end
     @calendar_date.date.to_datetime
-                  .change(request_deadline_time_params)
+                  .change(weekday_template_time_params)
                   .asctime
                   .in_time_zone('Europe/Zurich')
   end
 
-  def request_deadline
-    @request_deadline ||= RequestDeadline.for_date(@calendar_date.date)
+  def weekday_template
+    @weekday_template ||= WeekdayTemplate.for_date(@calendar_date.date)
   end
 
-  def request_deadline_time_params
+  def weekday_template_time_params
     {
-      hour: request_deadline.time.hour,
-      min: request_deadline.time.min
+      hour: weekday_template.time.hour,
+      min: weekday_template.time.min
     }
   end
 end

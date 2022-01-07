@@ -4,27 +4,10 @@
       = render CalendarDateSheetComponent.new(date: calendar_date.date)
   .flex.flex-col.gap-y-2
     .text-gray-300.text-xl.text-center
-      = calendar_date.display_light_requests_with_count
+      = calendar_date.decorate.display_light_requests_with_count
   .flex.items-center.divide-x.divide-gray-600.text-xs
-    .flex-1.px-2.text-right.uppercase{ class: calendar_date.statuses_settings.dig(calendar_date.status, :css, :'text-primary') }
-      = calendar_date.display_status
+    .flex-1.px-2.text-right.uppercase{ class: calendar_date.decorate.statuses_settings.dig(calendar_date.status, :css, :'text-primary') }
+      = calendar_date.decorate.display_status
     .flex-1.px-2.text-xs.text-gray-400
-      = t('.deadline_at', deadline_at: calendar_date.display_deadline_at)
-  - if render_form?
-    .flex
-      .w-full.flex.gap-x-4
-        - if calendar_date.decided?
-          = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
-            = f.hidden_field :decision, value: :reset
-            = f.submit t('shared.models.calendar_date.actions.revoke_decision'), class: 'w-full py-2 px-3 text-yellow-100 bg-yellow-800 hover:bg-yellow-700 transition rounded w-full flex justify-center cursor-pointer'
-
-        - else
-          - if !calendar_date.light_confirmed?
-            = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
-              = f.hidden_field :decision, value: :confirm
-              = f.submit t('shared.models.calendar_date.actions.confirm'), class: 'w-full py-2 px-3 text-green-200 bg-green-700 hover:bg-green-600 transition rounded w-full flex justify-center cursor-pointer'
-
-          - if !calendar_date.light_dismissed?
-            = form_with(model: calendar_date, url: [:admin, calendar_date], class: 'w-full') do |f|
-              = f.hidden_field :decision, value: :dismiss
-              = f.submit t('shared.models.calendar_date.actions.dismiss'), class: 'w-full py-2 px-3 text-gray-300 bg-gray-900 hover:bg-purple-800 transition rounded w-full flex justify-center cursor-pointer'
+      = t('.deadline_at', deadline_at: calendar_date.decorate.display_deadline_at)
+  = render Admin::CalendarDateDecisionFormComponent.new(current_user: current_user, calendar_date: calendar_date)
