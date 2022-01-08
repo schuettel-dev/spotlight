@@ -61,11 +61,32 @@ class CalendarDateTest < ActiveSupport::TestCase
     end
   end
 
-  test '#reset_caretaker_decision!' do
-    assert false, 'todo'
+  test '#reset_caretaker_decision!, confirmed' do
+    calendar_date = calendar_dates(:monday)
+    assert_changes -> { calendar_date.caretaker_confirmed_light? }, to: false do
+      assert_no_changes -> { calendar_date.caretaker_dismissed_light? } do
+        calendar_date.reset_caretaker_decision!
+      end
+    end
+  end
+
+  test '#reset_caretaker_decision!, dismissed' do
+    calendar_date = calendar_dates(:monday)
+    calendar_date.caretaker_dismissed_light!
+
+    assert_changes -> { calendar_date.caretaker_dismissed_light? }, to: false do
+      assert_no_changes -> { calendar_date.caretaker_confirmed_light? } do
+        calendar_date.reset_caretaker_decision!
+      end
+    end
   end
 
   test '#request_window_open_at?' do
-    assert false, 'todo'
+    calendar_date = calendar_dates(:tuesday)
+
+    assert_not calendar_date.request_window_open_at?(DateTime.parse('2001-01-01 23:59:59 UTC+1'))
+    assert calendar_date.request_window_open_at?(DateTime.parse('2001-01-02 00:00:00 UTC+1'))
+    assert calendar_date.request_window_open_at?(DateTime.parse('2001-01-02 16:00:00 UTC+1'))
+    assert_not calendar_date.request_window_open_at?(DateTime.parse('2001-01-02 16:00:01 UTC+1'))
   end
 end

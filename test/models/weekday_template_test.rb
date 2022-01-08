@@ -12,7 +12,11 @@ class WeekdayTemplateTest < ActiveSupport::TestCase
   end
 
   test '#set_request_window_ends_at with blank' do
-    assert false, 'todo'
+    weekday_template = weekday_templates(:monday)
+    assert_no_changes -> { weekday_template.request_window_ends_at } do
+      weekday_template.set_request_window_ends_at('')
+      weekday_template.reload
+    end
   end
 
   test '#update_request_window_ends_at' do
@@ -20,10 +24,20 @@ class WeekdayTemplateTest < ActiveSupport::TestCase
     assert_changes -> { to_day_time_only(weekday_template.request_window_ends_at) },
                    from: '16:30', to: '13:00' do
       weekday_template.update_request_window_ends_at('13:00')
+      weekday_template.reload
     end
   end
 
   test '#toggle_active!' do
-    assert false, 'todo'
+    weekday_template = weekday_templates(:monday)
+    assert_changes -> { weekday_template.active? }, to: false do
+      weekday_template.toggle_active!
+      weekday_template.reload
+    end
+
+    assert_changes -> { weekday_template.active? }, to: true do
+      weekday_template.toggle_active!
+      weekday_template.reload
+    end
   end
 end

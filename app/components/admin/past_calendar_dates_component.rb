@@ -5,4 +5,8 @@ class Admin::PastCalendarDatesComponent < ViewComponent::Base
     super()
     @calendar_dates = calendar_dates
   end
+
+  def render?
+    calendar_dates.any?
+  end
 end
