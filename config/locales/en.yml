@@ -123,7 +123,9 @@ en:
     models:
       calendar_date:
         actions:
+          activate: Activate
           confirm: Confirm
+          deactivate: Deactivate
           dismiss: Dismiss
           revoke_decision: Revoke decision
       user:

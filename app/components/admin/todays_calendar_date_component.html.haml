@@ -1,13 +1,24 @@
-.calendar-date--today.flex.flex-col.gap-y-12.bg-gray-800.px-4.py-8.rounded
+.calendar-date--today.flex.flex-col.gap-y-8.bg-gray-800.px-4.py-8.rounded
   .flex.flex-col.gap-4.items-center
     %div{ class: 'w-1/3' }
       = render CalendarDateSheetComponent.new(date: calendar_date.date)
-  .flex.flex-col.gap-y-2
-    .text-gray-300.text-xl.text-center
-      = calendar_date.decorate.display_light_requests_with_count
-  .flex.items-center.divide-x.divide-gray-600.text-xs
-    .flex-1.px-2.text-right.uppercase{ class: calendar_date.decorate.statuses_settings.dig(calendar_date.status, :css, :'text-primary') }
+
+  .flex.flex-col.items-center.justify-center.gap-y-3
+    = render CalendarDate::StatusBadgeComponent.new(status: calendar_date.status)
+    .text-sm.uppercase.text-center.leading-5{ class: status_color_css }
       = calendar_date.decorate.display_status
-    .flex-1.px-2.text-xs.text-gray-400
-      = t('.deadline_at', deadline_at: calendar_date.decorate.display_request_window_ends_at)
-  = render Admin::CalendarDateDecisionFormComponent.new(current_user: current_user, calendar_date: calendar_date)
+
+  .flex.flex-col.gap-y-4
+    - if calendar_date.active?
+      .flex.flex-col.gap-8
+        .flex.flex-col.gap-4
+          .w-full.text-xs.text-gray-400.text-center
+            %time.request-window-end{ datetime: calendar_date.request_window_ends_at.iso8601 }
+              = t('.deadline_at', deadline_at: calendar_date.decorate.display_request_window_ends_at)
+
+          .w-full.text-gray-300.text-xl.text-center
+            = calendar_date.decorate.display_light_requests_with_count
+
+        = render Admin::CalendarDateDecisionFormComponent.new(current_user: current_user, calendar_date: calendar_date)
+
+    = render Admin::CalendarDateActivationFormComponent.new(calendar_date: calendar_date)

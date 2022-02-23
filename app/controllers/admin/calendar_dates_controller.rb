@@ -14,16 +14,11 @@ class Admin::CalendarDatesController < AdminController
   end
 
   def update
-    CalendarDateDecisionService.new(@calendar_date, calendar_date_params[:decision]).call
-
+    @calendar_date.update(Admin::CalendarDateParamsTransformer.new(params).attributes)
     redirect_to admin_calendar_dates_path
   end
 
   private
-
-  def calendar_date_params
-    params.require(:calendar_date).permit(:decision)
-  end
 
   def set_calendar_date
     @calendar_date = CalendarDate.find(params[:id])

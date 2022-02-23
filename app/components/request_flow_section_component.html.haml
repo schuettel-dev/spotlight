@@ -27,7 +27,7 @@
                   %div
                     %p.text-sm.text-gray-500
                       = t('.sending_request_to_caretaker_at')
-                      %time.request-time-window-end{ datetime: calendar_date.request_window_ends_at }
+                      %time.request-window-end{ datetime: calendar_date.request_window_ends_at }
                         = calendar_date.decorate.display_request_window_ends_at
 
               - if calendar_date.light_requested? || calendar_date.light_confirmed? || calendar_date.light_dismissed?

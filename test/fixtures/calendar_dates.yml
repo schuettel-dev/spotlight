@@ -40,3 +40,13 @@ thursday:
   caretaker_confirmed_light_at:
   caretaker_dismissed_light_at:
   sun_sets_at: '2001-01-04 15:50:39 UTC'
+
+friday:
+  <<: *DEFAULTS
+  date: '2001-01-05'
+  request_window_starts_at: '2001-01-04 23:00:00 UTC'
+  request_window_ends_at: '2001-01-05 13:30:00 UTC'
+  caretaker_informed_at:
+  caretaker_confirmed_light_at:
+  caretaker_dismissed_light_at:
+  sun_sets_at: '2001-01-05 15:51:43 UTC'

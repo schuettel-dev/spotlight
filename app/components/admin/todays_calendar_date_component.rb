@@ -6,4 +6,10 @@ class Admin::TodaysCalendarDateComponent < ViewComponent::Base
     @current_user = current_user
     @calendar_date = calendar_date
   end
+
+  private
+
+  def status_color_css
+    calendar_date.decorate.statuses_settings.dig(calendar_date.status, :css, :'text-primary')
+  end
 end
