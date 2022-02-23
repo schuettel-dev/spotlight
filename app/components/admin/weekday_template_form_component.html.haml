@@ -1,4 +1,4 @@
 = form_with(model: [:admin, weekday_template], html: { class: 'w-full grid grid-cols-1 sm:grid-cols-4 gap-x-2 gap-y-2' }) do |f|
-  = f.label :time, class: 'hidden'
-  = f.select :time, request_window_ends_at_select_options, { selected: selected_request_window_ends_at }, { class: 'spotlight-form--select w-full sm:col-span-3' }
+  = f.label :request_window_ends_at, class: 'hidden'
+  = f.select :request_window_ends_at, request_window_ends_at_select_options, { selected: selected_request_window_ends_at }, { class: 'spotlight-form--select w-full sm:col-span-3' }
   = f.submit t('.actions.update_time'), class: 'spotlight-form--submit py-2 w-full'
