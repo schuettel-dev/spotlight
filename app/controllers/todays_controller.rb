@@ -10,6 +10,14 @@ class TodaysController < ApplicationController
     end
   end
 
+  def status
+    respond_to do |format|
+      format.html do
+        render StatusSectionComponent.new(calendar_date: find_calendar_date)
+      end
+    end
+  end
+
   private
 
   def find_calendar_date

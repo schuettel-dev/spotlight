@@ -65,4 +65,8 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.active_record.encryption.encrypt_fixtures = true
+
+  ENV['EXPOSABLE_HOSTS']&.split(',')&.each do |exposable_host|
+    config.hosts << exposable_host
+  end
 end

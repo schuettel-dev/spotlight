@@ -1,10 +1,8 @@
-.flex.flex-col.gap-y-20
-  = render DateSectionComponent.new(calendar_date: calendar_date)
+= turbo_stream_from('today')
 
-  = render StatusSectionComponent.new(calendar_date: calendar_date)
+.flex.flex-col.gap-y-20
+  = turbo_frame_tag('todays-status-frame', src: status_today_path, 'data-controller': 'refresh-frame')
 
   = render RequestsSectionComponent.new(calendar_date: calendar_date, user_light_request: user_light_request)
-
-  = render RequestFlowSectionComponent.new(calendar_date: calendar_date)
 
   = render DeadlinesSectionComponent.new

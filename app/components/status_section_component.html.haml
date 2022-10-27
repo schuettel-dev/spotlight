@@ -1,17 +1,114 @@
-%section.status
-  .section--title
-    %h2= t('sections.status')
-  .section--body
-    .flex.flex-col.items-center.gap-y-4
-      = render CalendarDate::StatusBadgeComponent.new(status: calendar_date.status)
+= turbo_frame_tag('todays-status-frame') do
+  %section#todays-status-section
+    .section--title
+      %h2= t('sections.status')
 
-      - if calendar_date.no_light_confirmed?
-        .text-gray-100.text-xl
-          = t('.no_light_today')
+    .section--body
+      = Time.zone.now
+      .flex.flex-col.gap-y-8
+        / DATE
+        .text-center.text-2xl.text-gray-200.flex.flex-col.gap-y-1
+          %time.calendar-date{ datetime: calendar_date.date }= display_date
+          .text-sm.text-gray-500
+            = t('.sunset_at_around')
+            %time.sunset-time{ datetime: calendar_date.sun_sets_at }= display_sun_sets_at
 
-      - if calendar_date.light_confirmed?
-        .text-gray-100.text-xl
-          = t('.light_confirmed')
+        / STATUS
+        .flex.flex-col.items-center.gap-y-4
+          = render CalendarDate::StatusBadgeComponent.new(status: calendar_date.status)
 
-      .text-gray-500.text-sm
-        = calendar_date.display_status
+          - if calendar_date.no_light_confirmed?
+            .text-gray-100.text-xl
+              = t('.no_light_today')
+
+          - if calendar_date.light_confirmed?
+            .text-gray-100.text-xl
+              = t('.light_confirmed')
+
+          .text-gray-500.text-sm
+            = calendar_date.display_status
+
+        / FLOW
+        %div.flex.flex-col.gap-y-4{ 'data-controller':  'toggleable' }
+          %div{ 'data-toggleable-target': 'body' }
+            .flow-root.mx-2
+              %ul{role: "list"}
+                %li.collecting-requests
+                  .relative.pb-8
+                    %span.absolute.top-4.left-4.-ml-px.h-full.bg-gray-400{"aria-hidden" => "true", class: "w-0.5"}
+                    .relative.flex.space-x-4.items-center
+                      %div
+                        %span.h-8.w-8.rounded-full.bg-sky-300.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.p-2
+                          = render HeroiconComponent.new(:collection)
+                      .min-w-0.flex-1.flex.space-x-4
+                        %p.text-sm.text-gray-300
+                          = t('.collecting_requests')
+
+                %li.contacting-caretaker
+                  .relative.pb-8
+                    %span.absolute.top-4.left-4.-ml-px.h-full.bg-gray-400{"aria-hidden" => "true", class: "w-0.5"}
+                    .relative.flex.space-x-4.items-center
+                      - if calendar_date.request_window_open_now? || calendar_date.requesting_light?
+                        %div
+                          %span.h-8.w-8.rounded-full.bg-gray-600.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
+                            = render HeroiconComponent.new(:'phone-outgoing')
+                        .min-w-0.flex-1.flex.justify-between.space-x-4
+                          %div
+                            %p.text-sm.text-gray-500
+                              = t('.sending_request_to_caretaker_at')
+                              %time.request-window-end{ datetime: calendar_date.request_window_ends_at }
+                                = calendar_date.decorate.display_request_window_ends_at
+
+                      - if calendar_date.light_requested? || calendar_date.light_confirmed? || calendar_date.light_dismissed?
+                        %div
+                          %span.h-8.w-8.rounded-full.bg-indigo-300.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
+                            = render HeroiconComponent.new(:'phone-outgoing')
+                        .min-w-0.flex-1.flex.justify-between.space-x-4
+                          %div
+                            %p.text-sm.text-gray-300
+                              - if calendar_date.caretaker_informed?
+                                = t('.request_sent_to_caretaker_at')
+                                %time.caretaker-informed-at{ datetime: calendar_date.caretaker_informed_at }
+                                  = l(calendar_date.caretaker_informed_at.in_time_zone('Europe/Zurich'), format: :day_time_only)
+                              - else
+                                = t('.caretaker_was_not_informed')
+
+
+                %li.decision
+                  .relative
+                    .relative.flex.space-x-4.items-center
+                      - if calendar_date.light_confirmed?
+                        %div
+                          %span.h-8.w-8.rounded-full.bg-green-400.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
+                            = render HeroiconComponent.new(:'light-bulb')
+                        .min-w-0.flex-1.flex.justify-between.space-x-4
+                          %p.text-sm.text-gray-100
+                            = CalendarDate.human_enum_name(:status, calendar_date.status)
+
+                      - elsif calendar_date.light_dismissed?
+                        %div
+                          %span.h-8.w-8.rounded-full.bg-purple-700.text-purple-300.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
+                            = render HeroiconComponent.new(:moon)
+                        .min-w-0.flex-1.flex.justify-between.space-x-4
+                          %p.text-sm.text-text-100
+                            = CalendarDate.human_enum_name(:status, calendar_date.status)
+
+                      - else
+                        %div
+                          %span.h-8.w-8.rounded-full.bg-gray-600.text-gray-900.flex.items-center.justify-center.ring-8.ring-gray-800.text-black.p-2
+                            = render HeroiconComponent.new(:'dots-horizontal')
+                        .min-w-0.flex-1.flex.justify-between.space-x-4
+                          %p.text-sm.text-gray-500
+                            - if calendar_date.request_window_open_now? || calendar_date.requesting_light?
+                              = t('.confirmation_or_dismissal')
+                            - else
+                              = t('.awaiting_confirmation_or_dismissal')
+          %div.hidden{ 'data-toggleable-target': 'togglers' }
+            %button{ 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'opener', class: 'w-full py-1 text-gray-400 flex items-center justify-center gap-x-1 text-sm' }
+              .h-4.w-4
+                = render HeroiconComponent.new(:'chevron-down')
+              = t('.show_request_flow')
+            %button{ 'data-action': 'toggleable#toggle', 'data-toggleable-target': 'closer', class: 'w-full py-1 text-gray-400 flex items-center justify-center gap-x-1 text-sm' }
+              .h-4.w-4
+                = render HeroiconComponent.new(:'chevron-up')
+              = t('.hide_request_flow')

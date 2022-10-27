@@ -4,14 +4,20 @@
 
 import { application } from "./application"
 
-import Admin__WeekdayTemplateListItemController from "./admin/weekday_template_list_item_controller.js"
-application.register("admin--request-deadline-list-item", Admin__WeekdayTemplateListItemController)
-
 import Admin__UserInfoController from "./admin/user_info_controller.js"
 application.register("admin--user-info", Admin__UserInfoController)
 
 import Admin__UserListItemController from "./admin/user_list_item_controller.js"
 application.register("admin--user-list-item", Admin__UserListItemController)
 
+import Admin__WeekdayTemplateListItemController from "./admin/weekday_template_list_item_controller.js"
+application.register("admin--weekday-template-list-item", Admin__WeekdayTemplateListItemController)
+
 import Helpers__DropdownController from "./helpers/dropdown_controller.js"
 application.register("helpers--dropdown", Helpers__DropdownController)
+
+import RefreshFrameController from "./refresh_frame_controller.js"
+application.register("refresh-frame", RefreshFrameController)
+
+import ToggleableController from "./toggleable_controller.js"
+application.register("toggleable", ToggleableController)

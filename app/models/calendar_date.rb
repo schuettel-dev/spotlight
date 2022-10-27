@@ -6,6 +6,8 @@ class CalendarDate < ApplicationRecord
   after_initialize :initialize_request_window, if: :new_record?
   after_initialize :initialize_sun_sets_at, if: :new_record?
 
+  after_update :broadcast
+
   validates :date, :request_window_starts_at, :request_window_ends_at, presence: true
   validates :date, uniqueness: true
   validates :request_window_ends_at, comparison: { greater_than_or_equal_to: :request_window_starts_at }
@@ -89,5 +91,9 @@ class CalendarDate < ApplicationRecord
 
   def request_window
     (request_window_starts_at..request_window_ends_at)
+  end
+
+  def broadcast
+    CalendarDateBroadcaster.new(self).call
   end
 end

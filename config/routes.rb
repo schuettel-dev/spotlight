@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :light_requests, only: %i[create destroy]
   get :remove_light_request, to: 'light_requests#destroy'
 
+  resource :today, only: :show do
+    get :status, on: :collection
+  end
   resource :profile, only: %i[show update]
 
   namespace :admin do
